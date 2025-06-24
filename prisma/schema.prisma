@@ -6,10 +6,63 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+  output   = "./lib/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String       @id @default(uuid())
+  createdAt DateTime     @default(now())
+  coupons   UserCoupon[]
+  Order     Order[]
+}
+
+model Merchant {
+  id          String   @id @default(uuid())
+  logo        String?
+  description String?
+  address     String?
+  phone       String?
+  name        String
+  createdAt   DateTime @default(now())
+  orders      Order[]
+}
+
+model CouponTemplate {
+  id        String       @id @default(uuid())
+  name      String
+  discount  Float
+  minSpend  Float
+  validDays Int
+  createdAt DateTime     @default(now())
+  coupons   UserCoupon[]
+}
+
+model UserCoupon {
+  id         String         @id @default(uuid())
+  user       User           @relation(fields: [userId], references: [id])
+  userId     String
+  template   CouponTemplate @relation(fields: [templateId], references: [id])
+  templateId String
+  status     String // unused | used | expired
+  issuedAt   DateTime       @default(now())
+  usedAt     DateTime?
+
+  orderId String? // 哪个订单用掉了这张券
+}
+
+model Order {
+  id             String   @id @default(uuid())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String
+  merchant       Merchant @relation(fields: [merchantId], references: [id])
+  merchantId     String
+  amount         Float
+  originalAmount Float
+  couponId       String?
+  createdAt      DateTime @default(now())
 }

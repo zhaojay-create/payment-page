@@ -1,6 +1,16 @@
-export default function Home() {
+"use client";
+
+import { useParams } from "next/navigation";
+import { getOrCreateUserId } from "@/utils/uuid";
+
+const Page = ({}) => {
+  // 这里可以添加一些逻辑，比如获取商户ID等
+  const { merchantId } = useParams();
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-xl font-bold">商户ID: {merchantId}</h1>
+      <h1 className="text-xs font-bold mb-5">用户ID: {getOrCreateUserId()}</h1>
       <form action="" className="bg-white p-6 rounded shadow-md w-96">
         <input
           type="number"
@@ -26,4 +36,6 @@ export default function Home() {
       </form>
     </div>
   );
-}
+};
+
+export default Page;

@@ -2,10 +2,15 @@
 
 import { useParams } from "next/navigation";
 import { getOrCreateUserId } from "@/utils/uuid";
+import { useEffect } from "react";
 
 const Page = ({}) => {
   // 这里可以添加一些逻辑，比如获取商户ID等
   const { merchantId } = useParams();
+
+  useEffect(() => {
+    fetch("/api/coupon");
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">

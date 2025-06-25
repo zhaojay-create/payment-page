@@ -1,26 +1,21 @@
-// 处理券的逻辑
-import { prisma } from "@/utils";
-import { NextApiRequest, NextApiResponse } from "next";
+// lib/prisma/coupon.ts
+import { CouponStatus } from "@/prisma/lib/generated/prisma";
+import prisma from "./prisma";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+export async function getUserCoupons(
+  userId: string,
+  status: CouponStatus = "unused"
 ) {
-  const { uid } = req.query;
-
-  if (typeof uid !== "string") {
-    return res.status(400).json({ error: "Missing or invalid uid" });
-  }
-
-  const coupons = await prisma.coupon.findMany({
+  return await prisma.coupon.findMany({
     where: {
-      userId: uid,
-      status: "unused",
+      userId,
+      status,
       expiredAt: {
-        gte: new Date(),
+        gte: new Date(), // 未过期
       },
     },
+    orderBy: {
+      expiredAt: "asc",
+    },
   });
-
-  res.status(200).json({ coupons });
 }

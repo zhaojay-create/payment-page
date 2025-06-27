@@ -23,50 +23,107 @@ const Page = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("金额：", amount);
-    console.log("使用的优惠券ID：", selectedCouponId);
+    console.log("提交订单", amount, selectedCouponId);
     // 你可以在这里发起提交订单请求
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-xl font-bold">商户ID: {merchantId}</h1>
-      <h1 className="text-xs font-bold mb-5">用户ID: {getOrCreateUserId()}</h1>
+    <div className="min-h-screen bg-[#f7f8fa] flex flex-col items-center pt-8">
+      <div className="w-full max-w-md">
+        {/* 顶部信息 */}
+        <div className="mb-4 px-6">
+          <div className="text-center text-lg font-semibold text-gray-900 mb-1">
+            付款
+          </div>
+          <div className="text-center text-xs text-gray-400 mb-2">
+            商户ID: {merchantId}
+          </div>
+          <div className="text-center text-xs text-gray-400 mb-2">
+            用户ID: {getOrCreateUserId()}
+          </div>
+        </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded shadow-md w-96 space-y-4"
-      >
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="输入你的金额"
-          className="border border-gray-300 p-2 rounded w-full"
-        />
-
-        <div className="text-sm text-gray-700">选择优惠券：</div>
-        <select
-          value={selectedCouponId ?? ""}
-          onChange={(e) => setSelectedCouponId(e.target.value || null)}
-          className="border border-gray-300 p-2 rounded w-full bg-white text-sm"
+        {/* 金额输入 */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-2xl shadow-sm px-6 py-6 space-y-6"
         >
-          <option value="">不使用优惠券</option>
-          {coupons.map((coupon) => (
-            <option key={coupon.id} value={coupon.id}>
-              {coupon.title || "无标题"} - ¥{coupon.amount.toString()}（有效期至{" "}
-              {coupon.expiredAt.toString()?.slice(0, 10)})
-            </option>
-          ))}
-        </select>
+          <div>
+            <label className="block text-gray-700 text-sm mb-1">付款金额</label>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="请输入金额"
+              className="w-full text-lg px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-400 outline-none bg-[#f7f8fa] transition"
+              min={0}
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors w-full"
-        >
-          提交
-        </button>
-      </form>
+          {/* 优惠券选择 */}
+          <div>
+            <div className="text-gray-700 text-sm mb-2">选择优惠券</div>
+            <div className="space-y-3">
+              <div
+                className={`cursor-pointer rounded-xl border ${
+                  selectedCouponId === null
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-200 bg-white"
+                } px-4 py-3 flex items-center`}
+                onClick={() => setSelectedCouponId(null)}
+              >
+                <input
+                  type="radio"
+                  checked={selectedCouponId === null}
+                  onChange={() => setSelectedCouponId(null)}
+                  className="accent-blue-500 mr-3"
+                />
+                <span className="text-gray-700 text-sm">不使用优惠券</span>
+              </div>
+              {coupons.map((coupon) => (
+                <div
+                  key={coupon.id}
+                  className={`cursor-pointer rounded-xl border ${
+                    selectedCouponId === coupon.id
+                      ? "border-blue-500 bg-blue-50"
+                      : "border-gray-200 bg-white"
+                  } px-4 py-3 flex items-center justify-between transition`}
+                  onClick={() => setSelectedCouponId(coupon.id)}
+                >
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      checked={selectedCouponId === coupon.id}
+                      onChange={() => setSelectedCouponId(coupon.id)}
+                      className="accent-blue-500 mr-3"
+                    />
+                    <div>
+                      <div className="font-medium text-gray-900">
+                        {coupon.title || "优惠券"}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        ¥{coupon.amount.toString()} · 有效期至{" "}
+                        {coupon.expiredAt.toString().slice(0, 10)}
+                      </div>
+                    </div>
+                  </div>
+                  <span className="text-xs text-blue-500 font-semibold">
+                    {coupon.couponType}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 提交按钮 */}
+          <button
+            type="submit"
+            className="w-full py-3 rounded-xl bg-blue-500 text-white text-base font-semibold shadow-sm hover:bg-blue-600 transition"
+          >
+            确认付款
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

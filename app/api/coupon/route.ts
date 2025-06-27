@@ -1,6 +1,14 @@
+import { getUserFromRequest } from "@/lib/auth/getUserFromRequest";
 import { getUserCoupons } from "@/lib/coupon";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
+  // 检查用户是否登录
+  const user = await getUserFromRequest();
+  if (!user) {
+    return NextResponse.json({ error: "未登录", user }, { status: 401 });
+  }
+
   try {
     const userId = "84783ce0-7e1d-4662-b079-b46709fa9544";
     if (!userId) {

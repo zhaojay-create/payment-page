@@ -3,6 +3,7 @@ import { getUserCoupons } from "@/lib/coupon";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
+  console.log("request: ", request);
   // 检查用户是否登录
   const user = await getUserFromRequest();
   if (!user) {

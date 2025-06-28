@@ -1,22 +1,15 @@
-import { getUserFromRequest } from "@/lib/auth/getUserFromRequest";
+import { getUserFromCookie } from "@/lib/auth/get-user";
 import { getUserCoupons } from "@/lib/coupon";
-import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
-  console.log("request: ", request);
-  // 检查用户是否登录
-  const user = await getUserFromRequest();
-  if (!user) {
-    return NextResponse.json({ error: "未登录", user }, { status: 401 });
-  }
-
+export async function GET() {
   try {
-    const userId = "84783ce0-7e1d-4662-b079-b46709fa9544";
+    const user = await getUserFromCookie();
+    const userId = user?.id as string; // 获取到用户 ID
     if (!userId) {
       return new Response("User ID is required", { status: 400 });
     }
     const coupons = await getUserCoupons(userId);
-    // return new Response(JSON.stringify(coupons), { status: 200 });
+    // 查询到用户的优惠券
     return Response.json({
       success: true,
       message: "Coupons fetched successfully",

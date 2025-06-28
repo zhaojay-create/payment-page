@@ -22,6 +22,7 @@ export default function LoginPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ phone, password }),
+        credentials: "include", // 包含 cookie 这样，浏览器会正确接收并存储后端返回的 cookie，包括 Set-Cookie: token=xxx
       });
 
       const data = await res.json();

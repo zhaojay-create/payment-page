@@ -1,18 +1,26 @@
-import jwt, { SignOptions } from "jsonwebtoken";
+import { SignJWT, jwtVerify } from "jose";
 
-const JWT_SECRET: string = process.env.JWT_SECRET as string;
+// 把字符串类型的 JWT_SECRET 转换为 Uint8Array（二进制字节数组）
+// 这是因为 jose 这样的 JWT 库在加密/解密时，要求密钥必须是字节数组格式，而不是普通字符串
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
-export function signJwt(payload: object) {
-  const options: SignOptions = { expiresIn: "7d" };
-  return jwt.sign(payload, JWT_SECRET, options);
+// 生成 JWT
+export async function signJwt(payload: Record<string, unknown>) {
+  return await new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("7d")
+    .sign(JWT_SECRET);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function verifyJwt<T = any>(token: string): T | null {
+// 验证 JWT
+export async function verifyJwt(token: string) {
   try {
-    return jwt.verify(token, JWT_SECRET) as T;
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return payload;
   } catch (e) {
-    console.log("e: ", e);
+    const error = e instanceof Error ? e : new Error(String(e));
+    console.error("Error verifying JWT:", error.message);
     return null;
   }
 }

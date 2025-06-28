@@ -1,15 +1,30 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { getOrCreateUserId } from "@/utils/uuid";
-import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+
 import { Coupon } from "@/prisma/lib/generated/prisma";
+import { getOrCreateUserId } from "@/utils/uuid";
 
 const Page = () => {
-  const { merchantId } = useParams();
+  const { merchantId } = useParams(); // 获取商户ID todo: 需要校验商户ID是否合法
+  const router = useRouter();
   const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
   const [amount, setAmount] = useState("");
+  const searchParams = useSearchParams();
+
+  // 拼接参数
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   useEffect(() => {
     fetch("/api/coupon")
@@ -21,10 +36,24 @@ const Page = () => {
       });
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("提交订单", amount, selectedCouponId);
-    // 你可以在这里发起提交订单请求
+    const response = await fetch("/api/order/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ merchantId, amount, couponId: selectedCouponId }),
+    });
+    const res = await response.json();
+    console.log("res: ", res);
+
+    if (res.success === true) {
+      router.push(
+        `/h5pay/success?${createQueryString("orderId", res.order.id)}`
+      );
+    }
   };
 
   return (

@@ -3,9 +3,27 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import * as z from "zod/v4";
 
 import { Coupon } from "@/prisma/lib/generated/prisma";
 import { getOrCreateUserId } from "@/utils/uuid";
+
+const amountSchema = z.string().refine(
+  (val) => {
+    const num = Number(val);
+    return !isNaN(num) && num > 0;
+  },
+  { message: "请输入大于0的金额" }
+);
 
 const Page = () => {
   const { merchantId } = useParams(); // 获取商户ID todo: 需要校验商户ID是否合法
@@ -13,7 +31,10 @@ const Page = () => {
   const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
   const [amount, setAmount] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const searchParams = useSearchParams();
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMsg, setDialogMsg] = useState("");
 
   // 拼接参数
   const createQueryString = useCallback(
@@ -38,21 +59,39 @@ const Page = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("提交订单", amount, selectedCouponId);
-    const response = await fetch("/api/order/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ merchantId, amount, couponId: selectedCouponId }),
-    });
-    const res = await response.json();
-    console.log("res: ", res);
-
-    if (res.success === true) {
-      router.push(
-        `/h5pay/success?${createQueryString("orderId", res.order.id)}`
-      );
+    // 校验金额
+    const result = amountSchema.safeParse(amount);
+    if (!result.success) {
+      setError("输入金额格式不正确,请输入大于0的数字");
+      return;
+    }
+    setError(null);
+    // 创建订单
+    try {
+      const response = await fetch("/api/order/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          merchantId,
+          amount,
+          couponId: selectedCouponId,
+        }),
+      });
+      const res = await response.json();
+      if (res.success === true) {
+        router.push(
+          `/h5pay/success?${createQueryString("orderId", res.order.id)}`
+        );
+      } else {
+        setDialogMsg(res.message || "创建订单失败，请稍后重试");
+        setDialogOpen(true);
+      }
+    } catch (error) {
+      setDialogMsg("网络异常或服务器错误，请稍后重试");
+      setDialogOpen(true);
+      console.error("error: ", error);
     }
   };
 
@@ -88,6 +127,7 @@ const Page = () => {
               min={0}
             />
           </div>
+          {error && <div className="text-red-500 text-xs mt-1">{error}</div>}
 
           {/* 优惠券选择 */}
           <div>
@@ -143,6 +183,19 @@ const Page = () => {
               ))}
             </div>
           </div>
+          <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>提示</AlertDialogTitle>
+                <AlertDialogDescription>{dialogMsg}</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogAction onClick={() => setDialogOpen(false)}>
+                  确定
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
 
           {/* 提交按钮 */}
           <button

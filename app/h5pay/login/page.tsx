@@ -16,7 +16,7 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const res = await fetch("/api/auth/login-or-register", {
+      const res = await fetch("/api/auth/user/login-or-register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

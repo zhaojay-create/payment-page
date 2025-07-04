@@ -1,34 +1,8 @@
 import "server-only";
 
-import { SignJWT, jwtVerify } from "jose";
-import { SessionPayload } from "./definitions";
 import { cookies } from "next/headers";
 import prisma from "../prisma";
-
-// 把字符串类型的 JWT_SECRET 转换为 Uint8Array（二进制字节数组）
-// 这是因为 jose 这样的 JWT 库在加密/解密时，要求密钥必须是字节数组格式，而不是普通字符串
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
-
-// 生成 JWT
-export async function signJwt(payload: SessionPayload) {
-  return await new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("7d")
-    .sign(JWT_SECRET);
-}
-
-// 验证 JWT
-export async function verifyJwt(session: string | undefined = "") {
-  try {
-    const { payload } = await jwtVerify(session, JWT_SECRET);
-    return payload;
-  } catch (e) {
-    const error = e instanceof Error ? e : new Error(String(e));
-    console.error("Error verifying JWT:", error.message);
-    return null;
-  }
-}
+import { signJwt, verifyJwt } from "./jwt";
 
 export async function createSession(userId: string) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -39,7 +13,6 @@ export async function createSession(userId: string) {
       expiresAt,
     },
   });
-  console.log("userSession: ", userSession);
   // 2. 生成 JWT
   const session = await signJwt({ userId: userSession.id, expiresAt });
   // 3. 设置 cookie

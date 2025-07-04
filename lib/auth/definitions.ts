@@ -11,6 +11,7 @@ export const SignupFormSchema = z.object({
   //   message: "Contain at least one special character.",
   // })
   // .trim(),
+  redirectUrl: z.string(),
 });
 
 export type FormState =

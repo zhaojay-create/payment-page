@@ -1,10 +1,13 @@
 "use client";
 
 import { signup } from "@/lib/auth/auth";
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 
 export default function LoginPage() {
   const [state, action, pending] = useActionState(signup, undefined);
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirectUrl") ?? "";
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4">
@@ -12,6 +15,7 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold text-center">手机登录</h1>
 
         <form action={action} className="space-y-4">
+          <input type="hidden" name="redirectUrl" value={redirectUrl} />
           <div>
             <label htmlFor="phone" className="block text-sm text-gray-600 mb-1">
               手机号

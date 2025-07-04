@@ -26,7 +26,7 @@ const amountSchema = z.string().refine(
 );
 
 const Page = () => {
-  const { merchantId } = useParams(); // 获取商户ID todo: 需要校验商户ID是否合法
+  const { slug } = useParams(); // 获取商户ID todo: 需要校验商户ID是否合法
   const router = useRouter();
   const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
@@ -74,7 +74,7 @@ const Page = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          merchantId,
+          slug,
           amount,
           couponId: selectedCouponId,
         }),
@@ -104,7 +104,7 @@ const Page = () => {
             付款
           </div>
           <div className="text-center text-xs text-gray-400 mb-2">
-            商户ID: {merchantId}
+            商户ID: {slug}
           </div>
           <div className="text-center text-xs text-gray-400 mb-2">
             用户ID: {getOrCreateUserId()}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyJwt } from "../auth/jwt";
+import { verifyJwt } from "../auth/session";
 
 export async function authAdminMiddleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;

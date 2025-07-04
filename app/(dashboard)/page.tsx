@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { verifyJwt } from "@/lib/auth/jwt";
+import { verifyJwt } from "@/lib/auth/session";
 import { cookies } from "next/headers";
 
 const Page = async () => {

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { signJwt } from "@/lib/auth/jwt";
+import { signJwt } from "@/lib/auth/session";
 
 export async function POST(req: Request) {
   const { phone, password } = await req.json();

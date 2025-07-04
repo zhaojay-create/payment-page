@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { verifyJwt } from "./jwt";
+import { verifyJwt } from "./session";
 
 export async function getUserFromCookie() {
   // cookies 只能在服务端使用，不能在客户端使用

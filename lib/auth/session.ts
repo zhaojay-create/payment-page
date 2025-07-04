@@ -3,6 +3,7 @@ import "server-only";
 import { SignJWT, jwtVerify } from "jose";
 import { SessionPayload } from "./definitions";
 import { cookies } from "next/headers";
+import prisma from "../prisma";
 
 // 把字符串类型的 JWT_SECRET 转换为 Uint8Array（二进制字节数组）
 // 这是因为 jose 这样的 JWT 库在加密/解密时，要求密钥必须是字节数组格式，而不是普通字符串
@@ -31,7 +32,17 @@ export async function verifyJwt(session: string | undefined = "") {
 
 export async function createSession(userId: string) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-  const session = await signJwt({ userId, expiresAt });
+  // 1. 把用户记录到 session 表中
+  const userSession = await prisma.userSession.create({
+    data: {
+      userId,
+      expiresAt,
+    },
+  });
+  console.log("userSession: ", userSession);
+  // 2. 生成 JWT
+  const session = await signJwt({ userId: userSession.id, expiresAt });
+  // 3. 设置 cookie
   const cookieStore = await cookies();
 
   cookieStore.set("session", session, {

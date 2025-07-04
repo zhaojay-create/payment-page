@@ -1,48 +1,10 @@
 "use client";
 
-import { signup } from "@/lib/actions/auth";
+import { signup } from "@/lib/auth/auth";
 import { useActionState } from "react";
-
-// import { useState } from "react";
-// import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [state, action, pending] = useActionState(signup, undefined);
-  // const router = useRouter();
-  // const [phone, setPhone] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState("");
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setError("");
-
-  //   try {
-  //     const res = await fetch("/api/auth/user/login-or-register", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ phone, password }),
-  //       credentials: "include", // 包含 cookie 这样，浏览器会正确接收并存储后端返回的 cookie，包括 Set-Cookie: token=xxx
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (!res.ok) throw new Error(data.error || "登录失败");
-
-  //     router.push("/"); // 登录成功后跳转首页或 dashboard
-  //   } catch (error) {
-  //     const message =
-  //       error instanceof Error ? error.message : "Unexpected error";
-  //     console.error("Error fetching coupons:", message);
-  //     setError(message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4">
@@ -56,9 +18,11 @@ export default function LoginPage() {
             </label>
             <input
               id="phone"
+              name="phone"
               type="tel"
               className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="请输入手机号"
+              defaultValue={17735118191}
               required
             />
           </div>
@@ -72,14 +36,25 @@ export default function LoginPage() {
               密码
             </label>
             <input
-              type="password"
               id="password"
+              name="password"
+              type="password"
               className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="请输入密码"
+              defaultValue="123456"
               required
             />
           </div>
-          {state?.errors?.password && <p>{state.errors.password}</p>}
+          {state?.errors?.password && (
+            <div>
+              <p>Password must:</p>
+              <ul>
+                {state.errors.password.map((error) => (
+                  <li key={error}>- {error}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <button
             type="submit"

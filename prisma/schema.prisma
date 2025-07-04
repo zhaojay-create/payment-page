@@ -35,17 +35,29 @@ enum OrderStatus {
 }
 
 model User {
-  id        String    @id @default(uuid())
+  id        String        @id @default(uuid())
   name      String
-  email     String?   @unique
-  phone     String    @unique
+  email     String?
+  phone     String
   password  String
   avatar    String?
-  isActive  Boolean   @default(true) // 是否激活
+  isActive  Boolean       @default(true) // 是否激活
   lastLogin DateTime? // 最后登录时间
   coupons   Coupon[] // 用户拥有的优惠券
   orders    Order[] // 用户的订单
-  createdAt DateTime  @default(now()) // 创建时间
+  session   UserSession[]
+  createdAt DateTime      @default(now()) // 创建时间
+}
+
+model UserSession {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  expiresAt DateTime
+  ip        String?
+  userAgent String? // 登录设备
 }
 
 model Merchant {
@@ -64,8 +76,21 @@ model Merchant {
   createdAt DateTime  @default(now()) // 商户创建时间
 
   orders      Order[] // 商户的订单
-  couponsFrom Coupon[] @relation("FromMerchant") // 商户发放的优惠券
-  couponsUsed Coupon[] @relation("UsedMerchant") // 商户使用的优惠券
+  couponsFrom Coupon[]          @relation("FromMerchant") // 商户发放的优惠券
+  couponsUsed Coupon[]          @relation("UsedMerchant") // 商户使用的优惠券
+  session     MerchantSession[]
+}
+
+model MerchantSession {
+  id         String   @id @default(uuid())
+  merchantId String
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+  createAt   DateTime @default(now())
+  updateAt   DateTime @updatedAt
+  revoked    Boolean  @default(false) // 是否下线，如果是 true 就下线
+  expiresAt  DateTime
+  ip         String?
+  userAgent  String? // 登录设备
 }
 
 model Coupon {

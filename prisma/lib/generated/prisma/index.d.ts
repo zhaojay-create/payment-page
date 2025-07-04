@@ -19,10 +19,20 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model UserSession
+ * 
+ */
+export type UserSession = $Result.DefaultSelection<Prisma.$UserSessionPayload>
+/**
  * Model Merchant
  * 
  */
 export type Merchant = $Result.DefaultSelection<Prisma.$MerchantPayload>
+/**
+ * Model MerchantSession
+ * 
+ */
+export type MerchantSession = $Result.DefaultSelection<Prisma.$MerchantSessionPayload>
 /**
  * Model Coupon
  * 
@@ -214,6 +224,16 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.userSession`: Exposes CRUD operations for the **UserSession** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserSessions
+    * const userSessions = await prisma.userSession.findMany()
+    * ```
+    */
+  get userSession(): Prisma.UserSessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.merchant`: Exposes CRUD operations for the **Merchant** model.
     * Example usage:
     * ```ts
@@ -222,6 +242,16 @@ export class PrismaClient<
     * ```
     */
   get merchant(): Prisma.MerchantDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.merchantSession`: Exposes CRUD operations for the **MerchantSession** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MerchantSessions
+    * const merchantSessions = await prisma.merchantSession.findMany()
+    * ```
+    */
+  get merchantSession(): Prisma.MerchantSessionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.coupon`: Exposes CRUD operations for the **Coupon** model.
@@ -300,8 +330,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.10.1
-   * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
+   * Prisma Client JS version: 6.11.1
+   * Query Engine version: f40f79ec31188888a2e33acda0ecc8fd10a853a9
    */
   export type PrismaVersion = {
     client: string
@@ -683,7 +713,9 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    UserSession: 'UserSession',
     Merchant: 'Merchant',
+    MerchantSession: 'MerchantSession',
     Coupon: 'Coupon',
     Order: 'Order'
   };
@@ -704,7 +736,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "merchant" | "coupon" | "order"
+      modelProps: "user" | "userSession" | "merchant" | "merchantSession" | "coupon" | "order"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -782,6 +814,80 @@ export namespace Prisma {
           }
         }
       }
+      UserSession: {
+        payload: Prisma.$UserSessionPayload<ExtArgs>
+        fields: Prisma.UserSessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserSessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserSessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>
+          }
+          findFirst: {
+            args: Prisma.UserSessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserSessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>
+          }
+          findMany: {
+            args: Prisma.UserSessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>[]
+          }
+          create: {
+            args: Prisma.UserSessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>
+          }
+          createMany: {
+            args: Prisma.UserSessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserSessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>[]
+          }
+          delete: {
+            args: Prisma.UserSessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>
+          }
+          update: {
+            args: Prisma.UserSessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserSessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserSessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserSessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserSessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSessionPayload>
+          }
+          aggregate: {
+            args: Prisma.UserSessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserSession>
+          }
+          groupBy: {
+            args: Prisma.UserSessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserSessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserSessionCountArgs<ExtArgs>
+            result: $Utils.Optional<UserSessionCountAggregateOutputType> | number
+          }
+        }
+      }
       Merchant: {
         payload: Prisma.$MerchantPayload<ExtArgs>
         fields: Prisma.MerchantFieldRefs
@@ -853,6 +959,80 @@ export namespace Prisma {
           count: {
             args: Prisma.MerchantCountArgs<ExtArgs>
             result: $Utils.Optional<MerchantCountAggregateOutputType> | number
+          }
+        }
+      }
+      MerchantSession: {
+        payload: Prisma.$MerchantSessionPayload<ExtArgs>
+        fields: Prisma.MerchantSessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MerchantSessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MerchantSessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>
+          }
+          findFirst: {
+            args: Prisma.MerchantSessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MerchantSessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>
+          }
+          findMany: {
+            args: Prisma.MerchantSessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>[]
+          }
+          create: {
+            args: Prisma.MerchantSessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>
+          }
+          createMany: {
+            args: Prisma.MerchantSessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MerchantSessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>[]
+          }
+          delete: {
+            args: Prisma.MerchantSessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>
+          }
+          update: {
+            args: Prisma.MerchantSessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.MerchantSessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MerchantSessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MerchantSessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>[]
+          }
+          upsert: {
+            args: Prisma.MerchantSessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MerchantSessionPayload>
+          }
+          aggregate: {
+            args: Prisma.MerchantSessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMerchantSession>
+          }
+          groupBy: {
+            args: Prisma.MerchantSessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MerchantSessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MerchantSessionCountArgs<ExtArgs>
+            result: $Utils.Optional<MerchantSessionCountAggregateOutputType> | number
           }
         }
       }
@@ -1089,7 +1269,9 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    userSession?: UserSessionOmit
     merchant?: MerchantOmit
+    merchantSession?: MerchantSessionOmit
     coupon?: CouponOmit
     order?: OrderOmit
   }
@@ -1188,11 +1370,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     coupons: number
     orders: number
+    session: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     coupons?: boolean | UserCountOutputTypeCountCouponsArgs
     orders?: boolean | UserCountOutputTypeCountOrdersArgs
+    session?: boolean | UserCountOutputTypeCountSessionArgs
   }
 
   // Custom InputTypes
@@ -1220,6 +1404,13 @@ export namespace Prisma {
     where?: OrderWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserSessionWhereInput
+  }
+
 
   /**
    * Count Type MerchantCountOutputType
@@ -1229,12 +1420,14 @@ export namespace Prisma {
     orders: number
     couponsFrom: number
     couponsUsed: number
+    session: number
   }
 
   export type MerchantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orders?: boolean | MerchantCountOutputTypeCountOrdersArgs
     couponsFrom?: boolean | MerchantCountOutputTypeCountCouponsFromArgs
     couponsUsed?: boolean | MerchantCountOutputTypeCountCouponsUsedArgs
+    session?: boolean | MerchantCountOutputTypeCountSessionArgs
   }
 
   // Custom InputTypes
@@ -1267,6 +1460,13 @@ export namespace Prisma {
    */
   export type MerchantCountOutputTypeCountCouponsUsedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CouponWhereInput
+  }
+
+  /**
+   * MerchantCountOutputType without action
+   */
+  export type MerchantCountOutputTypeCountSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MerchantSessionWhereInput
   }
 
 
@@ -1472,6 +1672,7 @@ export namespace Prisma {
     createdAt?: boolean
     coupons?: boolean | User$couponsArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    session?: boolean | User$sessionArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1515,6 +1716,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     coupons?: boolean | User$couponsArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    session?: boolean | User$sessionArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1525,6 +1727,7 @@ export namespace Prisma {
     objects: {
       coupons: Prisma.$CouponPayload<ExtArgs>[]
       orders: Prisma.$OrderPayload<ExtArgs>[]
+      session: Prisma.$UserSessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1932,6 +2135,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     coupons<T extends User$couponsArgs<ExtArgs> = {}>(args?: Subset<T, User$couponsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    session<T extends User$sessionArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2406,6 +2610,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.session
+   */
+  export type User$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    where?: UserSessionWhereInput
+    orderBy?: UserSessionOrderByWithRelationInput | UserSessionOrderByWithRelationInput[]
+    cursor?: UserSessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserSessionScalarFieldEnum | UserSessionScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2421,6 +2649,1090 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserSession
+   */
+
+  export type AggregateUserSession = {
+    _count: UserSessionCountAggregateOutputType | null
+    _min: UserSessionMinAggregateOutputType | null
+    _max: UserSessionMaxAggregateOutputType | null
+  }
+
+  export type UserSessionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    expiresAt: Date | null
+    ip: string | null
+    userAgent: string | null
+  }
+
+  export type UserSessionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    expiresAt: Date | null
+    ip: string | null
+    userAgent: string | null
+  }
+
+  export type UserSessionCountAggregateOutputType = {
+    id: number
+    userId: number
+    createAt: number
+    updateAt: number
+    expiresAt: number
+    ip: number
+    userAgent: number
+    _all: number
+  }
+
+
+  export type UserSessionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    createAt?: true
+    updateAt?: true
+    expiresAt?: true
+    ip?: true
+    userAgent?: true
+  }
+
+  export type UserSessionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    createAt?: true
+    updateAt?: true
+    expiresAt?: true
+    ip?: true
+    userAgent?: true
+  }
+
+  export type UserSessionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    createAt?: true
+    updateAt?: true
+    expiresAt?: true
+    ip?: true
+    userAgent?: true
+    _all?: true
+  }
+
+  export type UserSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserSession to aggregate.
+     */
+    where?: UserSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSessions to fetch.
+     */
+    orderBy?: UserSessionOrderByWithRelationInput | UserSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserSessions
+    **/
+    _count?: true | UserSessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserSessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserSessionMaxAggregateInputType
+  }
+
+  export type GetUserSessionAggregateType<T extends UserSessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserSession[P]>
+      : GetScalarType<T[P], AggregateUserSession[P]>
+  }
+
+
+
+
+  export type UserSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserSessionWhereInput
+    orderBy?: UserSessionOrderByWithAggregationInput | UserSessionOrderByWithAggregationInput[]
+    by: UserSessionScalarFieldEnum[] | UserSessionScalarFieldEnum
+    having?: UserSessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserSessionCountAggregateInputType | true
+    _min?: UserSessionMinAggregateInputType
+    _max?: UserSessionMaxAggregateInputType
+  }
+
+  export type UserSessionGroupByOutputType = {
+    id: string
+    userId: string
+    createAt: Date
+    updateAt: Date
+    expiresAt: Date
+    ip: string | null
+    userAgent: string | null
+    _count: UserSessionCountAggregateOutputType | null
+    _min: UserSessionMinAggregateOutputType | null
+    _max: UserSessionMaxAggregateOutputType | null
+  }
+
+  type GetUserSessionGroupByPayload<T extends UserSessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserSessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserSessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserSessionGroupByOutputType[P]>
+            : GetScalarType<T[P], UserSessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSession"]>
+
+  export type UserSessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSession"]>
+
+  export type UserSessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSession"]>
+
+  export type UserSessionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+  }
+
+  export type UserSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "createAt" | "updateAt" | "expiresAt" | "ip" | "userAgent", ExtArgs["result"]["userSession"]>
+  export type UserSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserSessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserSession"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      createAt: Date
+      updateAt: Date
+      expiresAt: Date
+      ip: string | null
+      userAgent: string | null
+    }, ExtArgs["result"]["userSession"]>
+    composites: {}
+  }
+
+  type UserSessionGetPayload<S extends boolean | null | undefined | UserSessionDefaultArgs> = $Result.GetResult<Prisma.$UserSessionPayload, S>
+
+  type UserSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserSessionCountAggregateInputType | true
+    }
+
+  export interface UserSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserSession'], meta: { name: 'UserSession' } }
+    /**
+     * Find zero or one UserSession that matches the filter.
+     * @param {UserSessionFindUniqueArgs} args - Arguments to find a UserSession
+     * @example
+     * // Get one UserSession
+     * const userSession = await prisma.userSession.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserSessionFindUniqueArgs>(args: SelectSubset<T, UserSessionFindUniqueArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserSession that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserSessionFindUniqueOrThrowArgs} args - Arguments to find a UserSession
+     * @example
+     * // Get one UserSession
+     * const userSession = await prisma.userSession.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, UserSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserSession that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSessionFindFirstArgs} args - Arguments to find a UserSession
+     * @example
+     * // Get one UserSession
+     * const userSession = await prisma.userSession.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserSessionFindFirstArgs>(args?: SelectSubset<T, UserSessionFindFirstArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserSession that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSessionFindFirstOrThrowArgs} args - Arguments to find a UserSession
+     * @example
+     * // Get one UserSession
+     * const userSession = await prisma.userSession.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, UserSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserSessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserSessions
+     * const userSessions = await prisma.userSession.findMany()
+     * 
+     * // Get first 10 UserSessions
+     * const userSessions = await prisma.userSession.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userSessionWithIdOnly = await prisma.userSession.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserSessionFindManyArgs>(args?: SelectSubset<T, UserSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserSession.
+     * @param {UserSessionCreateArgs} args - Arguments to create a UserSession.
+     * @example
+     * // Create one UserSession
+     * const UserSession = await prisma.userSession.create({
+     *   data: {
+     *     // ... data to create a UserSession
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserSessionCreateArgs>(args: SelectSubset<T, UserSessionCreateArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserSessions.
+     * @param {UserSessionCreateManyArgs} args - Arguments to create many UserSessions.
+     * @example
+     * // Create many UserSessions
+     * const userSession = await prisma.userSession.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserSessionCreateManyArgs>(args?: SelectSubset<T, UserSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserSessions and returns the data saved in the database.
+     * @param {UserSessionCreateManyAndReturnArgs} args - Arguments to create many UserSessions.
+     * @example
+     * // Create many UserSessions
+     * const userSession = await prisma.userSession.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserSessions and only return the `id`
+     * const userSessionWithIdOnly = await prisma.userSession.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserSessionCreateManyAndReturnArgs>(args?: SelectSubset<T, UserSessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserSession.
+     * @param {UserSessionDeleteArgs} args - Arguments to delete one UserSession.
+     * @example
+     * // Delete one UserSession
+     * const UserSession = await prisma.userSession.delete({
+     *   where: {
+     *     // ... filter to delete one UserSession
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserSessionDeleteArgs>(args: SelectSubset<T, UserSessionDeleteArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserSession.
+     * @param {UserSessionUpdateArgs} args - Arguments to update one UserSession.
+     * @example
+     * // Update one UserSession
+     * const userSession = await prisma.userSession.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserSessionUpdateArgs>(args: SelectSubset<T, UserSessionUpdateArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserSessions.
+     * @param {UserSessionDeleteManyArgs} args - Arguments to filter UserSessions to delete.
+     * @example
+     * // Delete a few UserSessions
+     * const { count } = await prisma.userSession.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserSessionDeleteManyArgs>(args?: SelectSubset<T, UserSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserSessions
+     * const userSession = await prisma.userSession.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserSessionUpdateManyArgs>(args: SelectSubset<T, UserSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserSessions and returns the data updated in the database.
+     * @param {UserSessionUpdateManyAndReturnArgs} args - Arguments to update many UserSessions.
+     * @example
+     * // Update many UserSessions
+     * const userSession = await prisma.userSession.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserSessions and only return the `id`
+     * const userSessionWithIdOnly = await prisma.userSession.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserSessionUpdateManyAndReturnArgs>(args: SelectSubset<T, UserSessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserSession.
+     * @param {UserSessionUpsertArgs} args - Arguments to update or create a UserSession.
+     * @example
+     * // Update or create a UserSession
+     * const userSession = await prisma.userSession.upsert({
+     *   create: {
+     *     // ... data to create a UserSession
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserSession we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserSessionUpsertArgs>(args: SelectSubset<T, UserSessionUpsertArgs<ExtArgs>>): Prisma__UserSessionClient<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSessionCountArgs} args - Arguments to filter UserSessions to count.
+     * @example
+     * // Count the number of UserSessions
+     * const count = await prisma.userSession.count({
+     *   where: {
+     *     // ... the filter for the UserSessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserSessionCountArgs>(
+      args?: Subset<T, UserSessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserSessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserSessionAggregateArgs>(args: Subset<T, UserSessionAggregateArgs>): Prisma.PrismaPromise<GetUserSessionAggregateType<T>>
+
+    /**
+     * Group by UserSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserSessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserSessionGroupByArgs['orderBy'] }
+        : { orderBy?: UserSessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserSession model
+   */
+  readonly fields: UserSessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserSession.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserSession model
+   */
+  interface UserSessionFieldRefs {
+    readonly id: FieldRef<"UserSession", 'String'>
+    readonly userId: FieldRef<"UserSession", 'String'>
+    readonly createAt: FieldRef<"UserSession", 'DateTime'>
+    readonly updateAt: FieldRef<"UserSession", 'DateTime'>
+    readonly expiresAt: FieldRef<"UserSession", 'DateTime'>
+    readonly ip: FieldRef<"UserSession", 'String'>
+    readonly userAgent: FieldRef<"UserSession", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserSession findUnique
+   */
+  export type UserSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSession to fetch.
+     */
+    where: UserSessionWhereUniqueInput
+  }
+
+  /**
+   * UserSession findUniqueOrThrow
+   */
+  export type UserSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSession to fetch.
+     */
+    where: UserSessionWhereUniqueInput
+  }
+
+  /**
+   * UserSession findFirst
+   */
+  export type UserSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSession to fetch.
+     */
+    where?: UserSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSessions to fetch.
+     */
+    orderBy?: UserSessionOrderByWithRelationInput | UserSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserSessions.
+     */
+    cursor?: UserSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserSessions.
+     */
+    distinct?: UserSessionScalarFieldEnum | UserSessionScalarFieldEnum[]
+  }
+
+  /**
+   * UserSession findFirstOrThrow
+   */
+  export type UserSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSession to fetch.
+     */
+    where?: UserSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSessions to fetch.
+     */
+    orderBy?: UserSessionOrderByWithRelationInput | UserSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserSessions.
+     */
+    cursor?: UserSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserSessions.
+     */
+    distinct?: UserSessionScalarFieldEnum | UserSessionScalarFieldEnum[]
+  }
+
+  /**
+   * UserSession findMany
+   */
+  export type UserSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSessions to fetch.
+     */
+    where?: UserSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSessions to fetch.
+     */
+    orderBy?: UserSessionOrderByWithRelationInput | UserSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserSessions.
+     */
+    cursor?: UserSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSessions.
+     */
+    skip?: number
+    distinct?: UserSessionScalarFieldEnum | UserSessionScalarFieldEnum[]
+  }
+
+  /**
+   * UserSession create
+   */
+  export type UserSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserSession.
+     */
+    data: XOR<UserSessionCreateInput, UserSessionUncheckedCreateInput>
+  }
+
+  /**
+   * UserSession createMany
+   */
+  export type UserSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserSessions.
+     */
+    data: UserSessionCreateManyInput | UserSessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserSession createManyAndReturn
+   */
+  export type UserSessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserSessions.
+     */
+    data: UserSessionCreateManyInput | UserSessionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserSession update
+   */
+  export type UserSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserSession.
+     */
+    data: XOR<UserSessionUpdateInput, UserSessionUncheckedUpdateInput>
+    /**
+     * Choose, which UserSession to update.
+     */
+    where: UserSessionWhereUniqueInput
+  }
+
+  /**
+   * UserSession updateMany
+   */
+  export type UserSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserSessions.
+     */
+    data: XOR<UserSessionUpdateManyMutationInput, UserSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which UserSessions to update
+     */
+    where?: UserSessionWhereInput
+    /**
+     * Limit how many UserSessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserSession updateManyAndReturn
+   */
+  export type UserSessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * The data used to update UserSessions.
+     */
+    data: XOR<UserSessionUpdateManyMutationInput, UserSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which UserSessions to update
+     */
+    where?: UserSessionWhereInput
+    /**
+     * Limit how many UserSessions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserSession upsert
+   */
+  export type UserSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserSession to update in case it exists.
+     */
+    where: UserSessionWhereUniqueInput
+    /**
+     * In case the UserSession found by the `where` argument doesn't exist, create a new UserSession with this data.
+     */
+    create: XOR<UserSessionCreateInput, UserSessionUncheckedCreateInput>
+    /**
+     * In case the UserSession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserSessionUpdateInput, UserSessionUncheckedUpdateInput>
+  }
+
+  /**
+   * UserSession delete
+   */
+  export type UserSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
+    /**
+     * Filter which UserSession to delete.
+     */
+    where: UserSessionWhereUniqueInput
+  }
+
+  /**
+   * UserSession deleteMany
+   */
+  export type UserSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserSessions to delete
+     */
+    where?: UserSessionWhereInput
+    /**
+     * Limit how many UserSessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserSession without action
+   */
+  export type UserSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSession
+     */
+    select?: UserSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSession
+     */
+    omit?: UserSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSessionInclude<ExtArgs> | null
   }
 
 
@@ -2639,6 +3951,7 @@ export namespace Prisma {
     orders?: boolean | Merchant$ordersArgs<ExtArgs>
     couponsFrom?: boolean | Merchant$couponsFromArgs<ExtArgs>
     couponsUsed?: boolean | Merchant$couponsUsedArgs<ExtArgs>
+    session?: boolean | Merchant$sessionArgs<ExtArgs>
     _count?: boolean | MerchantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["merchant"]>
 
@@ -2689,6 +4002,7 @@ export namespace Prisma {
     orders?: boolean | Merchant$ordersArgs<ExtArgs>
     couponsFrom?: boolean | Merchant$couponsFromArgs<ExtArgs>
     couponsUsed?: boolean | Merchant$couponsUsedArgs<ExtArgs>
+    session?: boolean | Merchant$sessionArgs<ExtArgs>
     _count?: boolean | MerchantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MerchantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2700,6 +4014,7 @@ export namespace Prisma {
       orders: Prisma.$OrderPayload<ExtArgs>[]
       couponsFrom: Prisma.$CouponPayload<ExtArgs>[]
       couponsUsed: Prisma.$CouponPayload<ExtArgs>[]
+      session: Prisma.$MerchantSessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3110,6 +4425,7 @@ export namespace Prisma {
     orders<T extends Merchant$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Merchant$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     couponsFrom<T extends Merchant$couponsFromArgs<ExtArgs> = {}>(args?: Subset<T, Merchant$couponsFromArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     couponsUsed<T extends Merchant$couponsUsedArgs<ExtArgs> = {}>(args?: Subset<T, Merchant$couponsUsedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    session<T extends Merchant$sessionArgs<ExtArgs> = {}>(args?: Subset<T, Merchant$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3610,6 +4926,30 @@ export namespace Prisma {
   }
 
   /**
+   * Merchant.session
+   */
+  export type Merchant$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    where?: MerchantSessionWhereInput
+    orderBy?: MerchantSessionOrderByWithRelationInput | MerchantSessionOrderByWithRelationInput[]
+    cursor?: MerchantSessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MerchantSessionScalarFieldEnum | MerchantSessionScalarFieldEnum[]
+  }
+
+  /**
    * Merchant without action
    */
   export type MerchantDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3625,6 +4965,1103 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: MerchantInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MerchantSession
+   */
+
+  export type AggregateMerchantSession = {
+    _count: MerchantSessionCountAggregateOutputType | null
+    _min: MerchantSessionMinAggregateOutputType | null
+    _max: MerchantSessionMaxAggregateOutputType | null
+  }
+
+  export type MerchantSessionMinAggregateOutputType = {
+    id: string | null
+    merchantId: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    revoked: boolean | null
+    expiresAt: Date | null
+    ip: string | null
+    userAgent: string | null
+  }
+
+  export type MerchantSessionMaxAggregateOutputType = {
+    id: string | null
+    merchantId: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    revoked: boolean | null
+    expiresAt: Date | null
+    ip: string | null
+    userAgent: string | null
+  }
+
+  export type MerchantSessionCountAggregateOutputType = {
+    id: number
+    merchantId: number
+    createAt: number
+    updateAt: number
+    revoked: number
+    expiresAt: number
+    ip: number
+    userAgent: number
+    _all: number
+  }
+
+
+  export type MerchantSessionMinAggregateInputType = {
+    id?: true
+    merchantId?: true
+    createAt?: true
+    updateAt?: true
+    revoked?: true
+    expiresAt?: true
+    ip?: true
+    userAgent?: true
+  }
+
+  export type MerchantSessionMaxAggregateInputType = {
+    id?: true
+    merchantId?: true
+    createAt?: true
+    updateAt?: true
+    revoked?: true
+    expiresAt?: true
+    ip?: true
+    userAgent?: true
+  }
+
+  export type MerchantSessionCountAggregateInputType = {
+    id?: true
+    merchantId?: true
+    createAt?: true
+    updateAt?: true
+    revoked?: true
+    expiresAt?: true
+    ip?: true
+    userAgent?: true
+    _all?: true
+  }
+
+  export type MerchantSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MerchantSession to aggregate.
+     */
+    where?: MerchantSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MerchantSessions to fetch.
+     */
+    orderBy?: MerchantSessionOrderByWithRelationInput | MerchantSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MerchantSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MerchantSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MerchantSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MerchantSessions
+    **/
+    _count?: true | MerchantSessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MerchantSessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MerchantSessionMaxAggregateInputType
+  }
+
+  export type GetMerchantSessionAggregateType<T extends MerchantSessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateMerchantSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMerchantSession[P]>
+      : GetScalarType<T[P], AggregateMerchantSession[P]>
+  }
+
+
+
+
+  export type MerchantSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MerchantSessionWhereInput
+    orderBy?: MerchantSessionOrderByWithAggregationInput | MerchantSessionOrderByWithAggregationInput[]
+    by: MerchantSessionScalarFieldEnum[] | MerchantSessionScalarFieldEnum
+    having?: MerchantSessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MerchantSessionCountAggregateInputType | true
+    _min?: MerchantSessionMinAggregateInputType
+    _max?: MerchantSessionMaxAggregateInputType
+  }
+
+  export type MerchantSessionGroupByOutputType = {
+    id: string
+    merchantId: string
+    createAt: Date
+    updateAt: Date
+    revoked: boolean
+    expiresAt: Date
+    ip: string | null
+    userAgent: string | null
+    _count: MerchantSessionCountAggregateOutputType | null
+    _min: MerchantSessionMinAggregateOutputType | null
+    _max: MerchantSessionMaxAggregateOutputType | null
+  }
+
+  type GetMerchantSessionGroupByPayload<T extends MerchantSessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MerchantSessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MerchantSessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MerchantSessionGroupByOutputType[P]>
+            : GetScalarType<T[P], MerchantSessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MerchantSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    merchantId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    revoked?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    merchant?: boolean | MerchantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["merchantSession"]>
+
+  export type MerchantSessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    merchantId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    revoked?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    merchant?: boolean | MerchantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["merchantSession"]>
+
+  export type MerchantSessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    merchantId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    revoked?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    merchant?: boolean | MerchantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["merchantSession"]>
+
+  export type MerchantSessionSelectScalar = {
+    id?: boolean
+    merchantId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    revoked?: boolean
+    expiresAt?: boolean
+    ip?: boolean
+    userAgent?: boolean
+  }
+
+  export type MerchantSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "merchantId" | "createAt" | "updateAt" | "revoked" | "expiresAt" | "ip" | "userAgent", ExtArgs["result"]["merchantSession"]>
+  export type MerchantSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    merchant?: boolean | MerchantDefaultArgs<ExtArgs>
+  }
+  export type MerchantSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    merchant?: boolean | MerchantDefaultArgs<ExtArgs>
+  }
+  export type MerchantSessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    merchant?: boolean | MerchantDefaultArgs<ExtArgs>
+  }
+
+  export type $MerchantSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MerchantSession"
+    objects: {
+      merchant: Prisma.$MerchantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      merchantId: string
+      createAt: Date
+      updateAt: Date
+      revoked: boolean
+      expiresAt: Date
+      ip: string | null
+      userAgent: string | null
+    }, ExtArgs["result"]["merchantSession"]>
+    composites: {}
+  }
+
+  type MerchantSessionGetPayload<S extends boolean | null | undefined | MerchantSessionDefaultArgs> = $Result.GetResult<Prisma.$MerchantSessionPayload, S>
+
+  type MerchantSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MerchantSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MerchantSessionCountAggregateInputType | true
+    }
+
+  export interface MerchantSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MerchantSession'], meta: { name: 'MerchantSession' } }
+    /**
+     * Find zero or one MerchantSession that matches the filter.
+     * @param {MerchantSessionFindUniqueArgs} args - Arguments to find a MerchantSession
+     * @example
+     * // Get one MerchantSession
+     * const merchantSession = await prisma.merchantSession.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MerchantSessionFindUniqueArgs>(args: SelectSubset<T, MerchantSessionFindUniqueArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MerchantSession that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MerchantSessionFindUniqueOrThrowArgs} args - Arguments to find a MerchantSession
+     * @example
+     * // Get one MerchantSession
+     * const merchantSession = await prisma.merchantSession.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MerchantSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, MerchantSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MerchantSession that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MerchantSessionFindFirstArgs} args - Arguments to find a MerchantSession
+     * @example
+     * // Get one MerchantSession
+     * const merchantSession = await prisma.merchantSession.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MerchantSessionFindFirstArgs>(args?: SelectSubset<T, MerchantSessionFindFirstArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MerchantSession that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MerchantSessionFindFirstOrThrowArgs} args - Arguments to find a MerchantSession
+     * @example
+     * // Get one MerchantSession
+     * const merchantSession = await prisma.merchantSession.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MerchantSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, MerchantSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MerchantSessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MerchantSessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MerchantSessions
+     * const merchantSessions = await prisma.merchantSession.findMany()
+     * 
+     * // Get first 10 MerchantSessions
+     * const merchantSessions = await prisma.merchantSession.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const merchantSessionWithIdOnly = await prisma.merchantSession.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MerchantSessionFindManyArgs>(args?: SelectSubset<T, MerchantSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MerchantSession.
+     * @param {MerchantSessionCreateArgs} args - Arguments to create a MerchantSession.
+     * @example
+     * // Create one MerchantSession
+     * const MerchantSession = await prisma.merchantSession.create({
+     *   data: {
+     *     // ... data to create a MerchantSession
+     *   }
+     * })
+     * 
+     */
+    create<T extends MerchantSessionCreateArgs>(args: SelectSubset<T, MerchantSessionCreateArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MerchantSessions.
+     * @param {MerchantSessionCreateManyArgs} args - Arguments to create many MerchantSessions.
+     * @example
+     * // Create many MerchantSessions
+     * const merchantSession = await prisma.merchantSession.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MerchantSessionCreateManyArgs>(args?: SelectSubset<T, MerchantSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MerchantSessions and returns the data saved in the database.
+     * @param {MerchantSessionCreateManyAndReturnArgs} args - Arguments to create many MerchantSessions.
+     * @example
+     * // Create many MerchantSessions
+     * const merchantSession = await prisma.merchantSession.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MerchantSessions and only return the `id`
+     * const merchantSessionWithIdOnly = await prisma.merchantSession.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MerchantSessionCreateManyAndReturnArgs>(args?: SelectSubset<T, MerchantSessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MerchantSession.
+     * @param {MerchantSessionDeleteArgs} args - Arguments to delete one MerchantSession.
+     * @example
+     * // Delete one MerchantSession
+     * const MerchantSession = await prisma.merchantSession.delete({
+     *   where: {
+     *     // ... filter to delete one MerchantSession
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MerchantSessionDeleteArgs>(args: SelectSubset<T, MerchantSessionDeleteArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MerchantSession.
+     * @param {MerchantSessionUpdateArgs} args - Arguments to update one MerchantSession.
+     * @example
+     * // Update one MerchantSession
+     * const merchantSession = await prisma.merchantSession.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MerchantSessionUpdateArgs>(args: SelectSubset<T, MerchantSessionUpdateArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MerchantSessions.
+     * @param {MerchantSessionDeleteManyArgs} args - Arguments to filter MerchantSessions to delete.
+     * @example
+     * // Delete a few MerchantSessions
+     * const { count } = await prisma.merchantSession.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MerchantSessionDeleteManyArgs>(args?: SelectSubset<T, MerchantSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MerchantSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MerchantSessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MerchantSessions
+     * const merchantSession = await prisma.merchantSession.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MerchantSessionUpdateManyArgs>(args: SelectSubset<T, MerchantSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MerchantSessions and returns the data updated in the database.
+     * @param {MerchantSessionUpdateManyAndReturnArgs} args - Arguments to update many MerchantSessions.
+     * @example
+     * // Update many MerchantSessions
+     * const merchantSession = await prisma.merchantSession.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MerchantSessions and only return the `id`
+     * const merchantSessionWithIdOnly = await prisma.merchantSession.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MerchantSessionUpdateManyAndReturnArgs>(args: SelectSubset<T, MerchantSessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MerchantSession.
+     * @param {MerchantSessionUpsertArgs} args - Arguments to update or create a MerchantSession.
+     * @example
+     * // Update or create a MerchantSession
+     * const merchantSession = await prisma.merchantSession.upsert({
+     *   create: {
+     *     // ... data to create a MerchantSession
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MerchantSession we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MerchantSessionUpsertArgs>(args: SelectSubset<T, MerchantSessionUpsertArgs<ExtArgs>>): Prisma__MerchantSessionClient<$Result.GetResult<Prisma.$MerchantSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MerchantSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MerchantSessionCountArgs} args - Arguments to filter MerchantSessions to count.
+     * @example
+     * // Count the number of MerchantSessions
+     * const count = await prisma.merchantSession.count({
+     *   where: {
+     *     // ... the filter for the MerchantSessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends MerchantSessionCountArgs>(
+      args?: Subset<T, MerchantSessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MerchantSessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MerchantSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MerchantSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MerchantSessionAggregateArgs>(args: Subset<T, MerchantSessionAggregateArgs>): Prisma.PrismaPromise<GetMerchantSessionAggregateType<T>>
+
+    /**
+     * Group by MerchantSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MerchantSessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MerchantSessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MerchantSessionGroupByArgs['orderBy'] }
+        : { orderBy?: MerchantSessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MerchantSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMerchantSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MerchantSession model
+   */
+  readonly fields: MerchantSessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MerchantSession.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MerchantSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    merchant<T extends MerchantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MerchantDefaultArgs<ExtArgs>>): Prisma__MerchantClient<$Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MerchantSession model
+   */
+  interface MerchantSessionFieldRefs {
+    readonly id: FieldRef<"MerchantSession", 'String'>
+    readonly merchantId: FieldRef<"MerchantSession", 'String'>
+    readonly createAt: FieldRef<"MerchantSession", 'DateTime'>
+    readonly updateAt: FieldRef<"MerchantSession", 'DateTime'>
+    readonly revoked: FieldRef<"MerchantSession", 'Boolean'>
+    readonly expiresAt: FieldRef<"MerchantSession", 'DateTime'>
+    readonly ip: FieldRef<"MerchantSession", 'String'>
+    readonly userAgent: FieldRef<"MerchantSession", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MerchantSession findUnique
+   */
+  export type MerchantSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which MerchantSession to fetch.
+     */
+    where: MerchantSessionWhereUniqueInput
+  }
+
+  /**
+   * MerchantSession findUniqueOrThrow
+   */
+  export type MerchantSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which MerchantSession to fetch.
+     */
+    where: MerchantSessionWhereUniqueInput
+  }
+
+  /**
+   * MerchantSession findFirst
+   */
+  export type MerchantSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which MerchantSession to fetch.
+     */
+    where?: MerchantSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MerchantSessions to fetch.
+     */
+    orderBy?: MerchantSessionOrderByWithRelationInput | MerchantSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MerchantSessions.
+     */
+    cursor?: MerchantSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MerchantSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MerchantSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MerchantSessions.
+     */
+    distinct?: MerchantSessionScalarFieldEnum | MerchantSessionScalarFieldEnum[]
+  }
+
+  /**
+   * MerchantSession findFirstOrThrow
+   */
+  export type MerchantSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which MerchantSession to fetch.
+     */
+    where?: MerchantSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MerchantSessions to fetch.
+     */
+    orderBy?: MerchantSessionOrderByWithRelationInput | MerchantSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MerchantSessions.
+     */
+    cursor?: MerchantSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MerchantSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MerchantSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MerchantSessions.
+     */
+    distinct?: MerchantSessionScalarFieldEnum | MerchantSessionScalarFieldEnum[]
+  }
+
+  /**
+   * MerchantSession findMany
+   */
+  export type MerchantSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which MerchantSessions to fetch.
+     */
+    where?: MerchantSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MerchantSessions to fetch.
+     */
+    orderBy?: MerchantSessionOrderByWithRelationInput | MerchantSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MerchantSessions.
+     */
+    cursor?: MerchantSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MerchantSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MerchantSessions.
+     */
+    skip?: number
+    distinct?: MerchantSessionScalarFieldEnum | MerchantSessionScalarFieldEnum[]
+  }
+
+  /**
+   * MerchantSession create
+   */
+  export type MerchantSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MerchantSession.
+     */
+    data: XOR<MerchantSessionCreateInput, MerchantSessionUncheckedCreateInput>
+  }
+
+  /**
+   * MerchantSession createMany
+   */
+  export type MerchantSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MerchantSessions.
+     */
+    data: MerchantSessionCreateManyInput | MerchantSessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MerchantSession createManyAndReturn
+   */
+  export type MerchantSessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * The data used to create many MerchantSessions.
+     */
+    data: MerchantSessionCreateManyInput | MerchantSessionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MerchantSession update
+   */
+  export type MerchantSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MerchantSession.
+     */
+    data: XOR<MerchantSessionUpdateInput, MerchantSessionUncheckedUpdateInput>
+    /**
+     * Choose, which MerchantSession to update.
+     */
+    where: MerchantSessionWhereUniqueInput
+  }
+
+  /**
+   * MerchantSession updateMany
+   */
+  export type MerchantSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MerchantSessions.
+     */
+    data: XOR<MerchantSessionUpdateManyMutationInput, MerchantSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which MerchantSessions to update
+     */
+    where?: MerchantSessionWhereInput
+    /**
+     * Limit how many MerchantSessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MerchantSession updateManyAndReturn
+   */
+  export type MerchantSessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * The data used to update MerchantSessions.
+     */
+    data: XOR<MerchantSessionUpdateManyMutationInput, MerchantSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which MerchantSessions to update
+     */
+    where?: MerchantSessionWhereInput
+    /**
+     * Limit how many MerchantSessions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MerchantSession upsert
+   */
+  export type MerchantSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MerchantSession to update in case it exists.
+     */
+    where: MerchantSessionWhereUniqueInput
+    /**
+     * In case the MerchantSession found by the `where` argument doesn't exist, create a new MerchantSession with this data.
+     */
+    create: XOR<MerchantSessionCreateInput, MerchantSessionUncheckedCreateInput>
+    /**
+     * In case the MerchantSession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MerchantSessionUpdateInput, MerchantSessionUncheckedUpdateInput>
+  }
+
+  /**
+   * MerchantSession delete
+   */
+  export type MerchantSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
+    /**
+     * Filter which MerchantSession to delete.
+     */
+    where: MerchantSessionWhereUniqueInput
+  }
+
+  /**
+   * MerchantSession deleteMany
+   */
+  export type MerchantSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MerchantSessions to delete
+     */
+    where?: MerchantSessionWhereInput
+    /**
+     * Limit how many MerchantSessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MerchantSession without action
+   */
+  export type MerchantSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MerchantSession
+     */
+    select?: MerchantSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MerchantSession
+     */
+    omit?: MerchantSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MerchantSessionInclude<ExtArgs> | null
   }
 
 
@@ -6081,6 +8518,19 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const UserSessionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    expiresAt: 'expiresAt',
+    ip: 'ip',
+    userAgent: 'userAgent'
+  };
+
+  export type UserSessionScalarFieldEnum = (typeof UserSessionScalarFieldEnum)[keyof typeof UserSessionScalarFieldEnum]
+
+
   export const MerchantScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -6096,6 +8546,20 @@ export namespace Prisma {
   };
 
   export type MerchantScalarFieldEnum = (typeof MerchantScalarFieldEnum)[keyof typeof MerchantScalarFieldEnum]
+
+
+  export const MerchantSessionScalarFieldEnum: {
+    id: 'id',
+    merchantId: 'merchantId',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    revoked: 'revoked',
+    expiresAt: 'expiresAt',
+    ip: 'ip',
+    userAgent: 'userAgent'
+  };
+
+  export type MerchantSessionScalarFieldEnum = (typeof MerchantSessionScalarFieldEnum)[keyof typeof MerchantSessionScalarFieldEnum]
 
 
   export const CouponScalarFieldEnum: {
@@ -6283,6 +8747,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     coupons?: CouponListRelationFilter
     orders?: OrderListRelationFilter
+    session?: UserSessionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6297,16 +8762,17 @@ export namespace Prisma {
     createdAt?: SortOrder
     coupons?: CouponOrderByRelationAggregateInput
     orders?: OrderOrderByRelationAggregateInput
+    session?: UserSessionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    email?: string
-    phone?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
+    email?: StringNullableFilter<"User"> | string | null
+    phone?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
@@ -6314,7 +8780,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     coupons?: CouponListRelationFilter
     orders?: OrderListRelationFilter
-  }, "id" | "email" | "phone">
+    session?: UserSessionListRelationFilter
+  }, "id">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6346,6 +8813,71 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type UserSessionWhereInput = {
+    AND?: UserSessionWhereInput | UserSessionWhereInput[]
+    OR?: UserSessionWhereInput[]
+    NOT?: UserSessionWhereInput | UserSessionWhereInput[]
+    id?: StringFilter<"UserSession"> | string
+    userId?: StringFilter<"UserSession"> | string
+    createAt?: DateTimeFilter<"UserSession"> | Date | string
+    updateAt?: DateTimeFilter<"UserSession"> | Date | string
+    expiresAt?: DateTimeFilter<"UserSession"> | Date | string
+    ip?: StringNullableFilter<"UserSession"> | string | null
+    userAgent?: StringNullableFilter<"UserSession"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserSessionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserSessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UserSessionWhereInput | UserSessionWhereInput[]
+    OR?: UserSessionWhereInput[]
+    NOT?: UserSessionWhereInput | UserSessionWhereInput[]
+    userId?: StringFilter<"UserSession"> | string
+    createAt?: DateTimeFilter<"UserSession"> | Date | string
+    updateAt?: DateTimeFilter<"UserSession"> | Date | string
+    expiresAt?: DateTimeFilter<"UserSession"> | Date | string
+    ip?: StringNullableFilter<"UserSession"> | string | null
+    userAgent?: StringNullableFilter<"UserSession"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type UserSessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    _count?: UserSessionCountOrderByAggregateInput
+    _max?: UserSessionMaxOrderByAggregateInput
+    _min?: UserSessionMinOrderByAggregateInput
+  }
+
+  export type UserSessionScalarWhereWithAggregatesInput = {
+    AND?: UserSessionScalarWhereWithAggregatesInput | UserSessionScalarWhereWithAggregatesInput[]
+    OR?: UserSessionScalarWhereWithAggregatesInput[]
+    NOT?: UserSessionScalarWhereWithAggregatesInput | UserSessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserSession"> | string
+    userId?: StringWithAggregatesFilter<"UserSession"> | string
+    createAt?: DateTimeWithAggregatesFilter<"UserSession"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"UserSession"> | Date | string
+    expiresAt?: DateTimeWithAggregatesFilter<"UserSession"> | Date | string
+    ip?: StringNullableWithAggregatesFilter<"UserSession"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"UserSession"> | string | null
+  }
+
   export type MerchantWhereInput = {
     AND?: MerchantWhereInput | MerchantWhereInput[]
     OR?: MerchantWhereInput[]
@@ -6364,6 +8896,7 @@ export namespace Prisma {
     orders?: OrderListRelationFilter
     couponsFrom?: CouponListRelationFilter
     couponsUsed?: CouponListRelationFilter
+    session?: MerchantSessionListRelationFilter
   }
 
   export type MerchantOrderByWithRelationInput = {
@@ -6381,6 +8914,7 @@ export namespace Prisma {
     orders?: OrderOrderByRelationAggregateInput
     couponsFrom?: CouponOrderByRelationAggregateInput
     couponsUsed?: CouponOrderByRelationAggregateInput
+    session?: MerchantSessionOrderByRelationAggregateInput
   }
 
   export type MerchantWhereUniqueInput = Prisma.AtLeast<{
@@ -6401,6 +8935,7 @@ export namespace Prisma {
     orders?: OrderListRelationFilter
     couponsFrom?: CouponListRelationFilter
     couponsUsed?: CouponListRelationFilter
+    session?: MerchantSessionListRelationFilter
   }, "id" | "email">
 
   export type MerchantOrderByWithAggregationInput = {
@@ -6435,6 +8970,76 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"Merchant"> | boolean
     lastLogin?: DateTimeNullableWithAggregatesFilter<"Merchant"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Merchant"> | Date | string
+  }
+
+  export type MerchantSessionWhereInput = {
+    AND?: MerchantSessionWhereInput | MerchantSessionWhereInput[]
+    OR?: MerchantSessionWhereInput[]
+    NOT?: MerchantSessionWhereInput | MerchantSessionWhereInput[]
+    id?: StringFilter<"MerchantSession"> | string
+    merchantId?: StringFilter<"MerchantSession"> | string
+    createAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    updateAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    revoked?: BoolFilter<"MerchantSession"> | boolean
+    expiresAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    ip?: StringNullableFilter<"MerchantSession"> | string | null
+    userAgent?: StringNullableFilter<"MerchantSession"> | string | null
+    merchant?: XOR<MerchantScalarRelationFilter, MerchantWhereInput>
+  }
+
+  export type MerchantSessionOrderByWithRelationInput = {
+    id?: SortOrder
+    merchantId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    revoked?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    merchant?: MerchantOrderByWithRelationInput
+  }
+
+  export type MerchantSessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MerchantSessionWhereInput | MerchantSessionWhereInput[]
+    OR?: MerchantSessionWhereInput[]
+    NOT?: MerchantSessionWhereInput | MerchantSessionWhereInput[]
+    merchantId?: StringFilter<"MerchantSession"> | string
+    createAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    updateAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    revoked?: BoolFilter<"MerchantSession"> | boolean
+    expiresAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    ip?: StringNullableFilter<"MerchantSession"> | string | null
+    userAgent?: StringNullableFilter<"MerchantSession"> | string | null
+    merchant?: XOR<MerchantScalarRelationFilter, MerchantWhereInput>
+  }, "id">
+
+  export type MerchantSessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    merchantId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    revoked?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    _count?: MerchantSessionCountOrderByAggregateInput
+    _max?: MerchantSessionMaxOrderByAggregateInput
+    _min?: MerchantSessionMinOrderByAggregateInput
+  }
+
+  export type MerchantSessionScalarWhereWithAggregatesInput = {
+    AND?: MerchantSessionScalarWhereWithAggregatesInput | MerchantSessionScalarWhereWithAggregatesInput[]
+    OR?: MerchantSessionScalarWhereWithAggregatesInput[]
+    NOT?: MerchantSessionScalarWhereWithAggregatesInput | MerchantSessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MerchantSession"> | string
+    merchantId?: StringWithAggregatesFilter<"MerchantSession"> | string
+    createAt?: DateTimeWithAggregatesFilter<"MerchantSession"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"MerchantSession"> | Date | string
+    revoked?: BoolWithAggregatesFilter<"MerchantSession"> | boolean
+    expiresAt?: DateTimeWithAggregatesFilter<"MerchantSession"> | Date | string
+    ip?: StringNullableWithAggregatesFilter<"MerchantSession"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"MerchantSession"> | string | null
   }
 
   export type CouponWhereInput = {
@@ -6633,6 +9238,7 @@ export namespace Prisma {
     createdAt?: Date | string
     coupons?: CouponCreateNestedManyWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
+    session?: UserSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6647,6 +9253,7 @@ export namespace Prisma {
     createdAt?: Date | string
     coupons?: CouponUncheckedCreateNestedManyWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    session?: UserSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6661,6 +9268,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     coupons?: CouponUpdateManyWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
+    session?: UserSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6675,6 +9283,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     coupons?: CouponUncheckedUpdateManyWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    session?: UserSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6713,6 +9322,75 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserSessionCreateInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+    user: UserCreateNestedOneWithoutSessionInput
+  }
+
+  export type UserSessionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type UserSessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutSessionNestedInput
+  }
+
+  export type UserSessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserSessionCreateManyInput = {
+    id?: string
+    userId: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type UserSessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserSessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type MerchantCreateInput = {
     id?: string
     name: string
@@ -6728,6 +9406,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutMerchantInput
     couponsFrom?: CouponCreateNestedManyWithoutFromMerchantInput
     couponsUsed?: CouponCreateNestedManyWithoutUsedMerchantInput
+    session?: MerchantSessionCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantUncheckedCreateInput = {
@@ -6745,6 +9424,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutMerchantInput
     couponsFrom?: CouponUncheckedCreateNestedManyWithoutFromMerchantInput
     couponsUsed?: CouponUncheckedCreateNestedManyWithoutUsedMerchantInput
+    session?: MerchantSessionUncheckedCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantUpdateInput = {
@@ -6762,6 +9442,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutMerchantNestedInput
     couponsFrom?: CouponUpdateManyWithoutFromMerchantNestedInput
     couponsUsed?: CouponUpdateManyWithoutUsedMerchantNestedInput
+    session?: MerchantSessionUpdateManyWithoutMerchantNestedInput
   }
 
   export type MerchantUncheckedUpdateInput = {
@@ -6779,6 +9460,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutMerchantNestedInput
     couponsFrom?: CouponUncheckedUpdateManyWithoutFromMerchantNestedInput
     couponsUsed?: CouponUncheckedUpdateManyWithoutUsedMerchantNestedInput
+    session?: MerchantSessionUncheckedUpdateManyWithoutMerchantNestedInput
   }
 
   export type MerchantCreateManyInput = {
@@ -6821,6 +9503,82 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MerchantSessionCreateInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    revoked?: boolean
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+    merchant: MerchantCreateNestedOneWithoutSessionInput
+  }
+
+  export type MerchantSessionUncheckedCreateInput = {
+    id?: string
+    merchantId: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    revoked?: boolean
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type MerchantSessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    merchant?: MerchantUpdateOneRequiredWithoutSessionNestedInput
+  }
+
+  export type MerchantSessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    merchantId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MerchantSessionCreateManyInput = {
+    id?: string
+    merchantId: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    revoked?: boolean
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type MerchantSessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MerchantSessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    merchantId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CouponCreateInput = {
@@ -7079,6 +9837,12 @@ export namespace Prisma {
     none?: OrderWhereInput
   }
 
+  export type UserSessionListRelationFilter = {
+    every?: UserSessionWhereInput
+    some?: UserSessionWhereInput
+    none?: UserSessionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -7089,6 +9853,10 @@ export namespace Prisma {
   }
 
   export type OrderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserSessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7200,6 +9968,51 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type UserSessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+  }
+
+  export type UserSessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+  }
+
+  export type UserSessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+  }
+
+  export type MerchantSessionListRelationFilter = {
+    every?: MerchantSessionWhereInput
+    some?: MerchantSessionWhereInput
+    none?: MerchantSessionWhereInput
+  }
+
+  export type MerchantSessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type MerchantCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -7242,6 +10055,44 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type MerchantScalarRelationFilter = {
+    is?: MerchantWhereInput
+    isNot?: MerchantWhereInput
+  }
+
+  export type MerchantSessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    merchantId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    revoked?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+  }
+
+  export type MerchantSessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    merchantId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    revoked?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+  }
+
+  export type MerchantSessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    merchantId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    revoked?: SortOrder
+    expiresAt?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -7265,16 +10116,6 @@ export namespace Prisma {
     in?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.CouponType[] | ListEnumCouponTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumCouponTypeFilter<$PrismaModel> | $Enums.CouponType
-  }
-
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
-  export type MerchantScalarRelationFilter = {
-    is?: MerchantWhereInput
-    isNot?: MerchantWhereInput
   }
 
   export type MerchantNullableScalarRelationFilter = {
@@ -7458,6 +10299,13 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
+  export type UserSessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserSessionCreateWithoutUserInput, UserSessionUncheckedCreateWithoutUserInput> | UserSessionCreateWithoutUserInput[] | UserSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSessionCreateOrConnectWithoutUserInput | UserSessionCreateOrConnectWithoutUserInput[]
+    createMany?: UserSessionCreateManyUserInputEnvelope
+    connect?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+  }
+
   export type CouponUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<CouponCreateWithoutUserInput, CouponUncheckedCreateWithoutUserInput> | CouponCreateWithoutUserInput[] | CouponUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CouponCreateOrConnectWithoutUserInput | CouponCreateOrConnectWithoutUserInput[]
@@ -7470,6 +10318,13 @@ export namespace Prisma {
     connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
     createMany?: OrderCreateManyUserInputEnvelope
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type UserSessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserSessionCreateWithoutUserInput, UserSessionUncheckedCreateWithoutUserInput> | UserSessionCreateWithoutUserInput[] | UserSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSessionCreateOrConnectWithoutUserInput | UserSessionCreateOrConnectWithoutUserInput[]
+    createMany?: UserSessionCreateManyUserInputEnvelope
+    connect?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7520,6 +10375,20 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
+  export type UserSessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserSessionCreateWithoutUserInput, UserSessionUncheckedCreateWithoutUserInput> | UserSessionCreateWithoutUserInput[] | UserSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSessionCreateOrConnectWithoutUserInput | UserSessionCreateOrConnectWithoutUserInput[]
+    upsert?: UserSessionUpsertWithWhereUniqueWithoutUserInput | UserSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserSessionCreateManyUserInputEnvelope
+    set?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    disconnect?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    delete?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    connect?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    update?: UserSessionUpdateWithWhereUniqueWithoutUserInput | UserSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserSessionUpdateManyWithWhereWithoutUserInput | UserSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserSessionScalarWhereInput | UserSessionScalarWhereInput[]
+  }
+
   export type CouponUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<CouponCreateWithoutUserInput, CouponUncheckedCreateWithoutUserInput> | CouponCreateWithoutUserInput[] | CouponUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CouponCreateOrConnectWithoutUserInput | CouponCreateOrConnectWithoutUserInput[]
@@ -7548,6 +10417,34 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
+  export type UserSessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserSessionCreateWithoutUserInput, UserSessionUncheckedCreateWithoutUserInput> | UserSessionCreateWithoutUserInput[] | UserSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSessionCreateOrConnectWithoutUserInput | UserSessionCreateOrConnectWithoutUserInput[]
+    upsert?: UserSessionUpsertWithWhereUniqueWithoutUserInput | UserSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserSessionCreateManyUserInputEnvelope
+    set?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    disconnect?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    delete?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    connect?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
+    update?: UserSessionUpdateWithWhereUniqueWithoutUserInput | UserSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserSessionUpdateManyWithWhereWithoutUserInput | UserSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserSessionScalarWhereInput | UserSessionScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutSessionInput = {
+    create?: XOR<UserCreateWithoutSessionInput, UserUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSessionNestedInput = {
+    create?: XOR<UserCreateWithoutSessionInput, UserUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionInput
+    upsert?: UserUpsertWithoutSessionInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionInput, UserUpdateWithoutSessionInput>, UserUncheckedUpdateWithoutSessionInput>
+  }
+
   export type OrderCreateNestedManyWithoutMerchantInput = {
     create?: XOR<OrderCreateWithoutMerchantInput, OrderUncheckedCreateWithoutMerchantInput> | OrderCreateWithoutMerchantInput[] | OrderUncheckedCreateWithoutMerchantInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutMerchantInput | OrderCreateOrConnectWithoutMerchantInput[]
@@ -7569,6 +10466,13 @@ export namespace Prisma {
     connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
   }
 
+  export type MerchantSessionCreateNestedManyWithoutMerchantInput = {
+    create?: XOR<MerchantSessionCreateWithoutMerchantInput, MerchantSessionUncheckedCreateWithoutMerchantInput> | MerchantSessionCreateWithoutMerchantInput[] | MerchantSessionUncheckedCreateWithoutMerchantInput[]
+    connectOrCreate?: MerchantSessionCreateOrConnectWithoutMerchantInput | MerchantSessionCreateOrConnectWithoutMerchantInput[]
+    createMany?: MerchantSessionCreateManyMerchantInputEnvelope
+    connect?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+  }
+
   export type OrderUncheckedCreateNestedManyWithoutMerchantInput = {
     create?: XOR<OrderCreateWithoutMerchantInput, OrderUncheckedCreateWithoutMerchantInput> | OrderCreateWithoutMerchantInput[] | OrderUncheckedCreateWithoutMerchantInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutMerchantInput | OrderCreateOrConnectWithoutMerchantInput[]
@@ -7588,6 +10492,13 @@ export namespace Prisma {
     connectOrCreate?: CouponCreateOrConnectWithoutUsedMerchantInput | CouponCreateOrConnectWithoutUsedMerchantInput[]
     createMany?: CouponCreateManyUsedMerchantInputEnvelope
     connect?: CouponWhereUniqueInput | CouponWhereUniqueInput[]
+  }
+
+  export type MerchantSessionUncheckedCreateNestedManyWithoutMerchantInput = {
+    create?: XOR<MerchantSessionCreateWithoutMerchantInput, MerchantSessionUncheckedCreateWithoutMerchantInput> | MerchantSessionCreateWithoutMerchantInput[] | MerchantSessionUncheckedCreateWithoutMerchantInput[]
+    connectOrCreate?: MerchantSessionCreateOrConnectWithoutMerchantInput | MerchantSessionCreateOrConnectWithoutMerchantInput[]
+    createMany?: MerchantSessionCreateManyMerchantInputEnvelope
+    connect?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
   }
 
   export type OrderUpdateManyWithoutMerchantNestedInput = {
@@ -7632,6 +10543,20 @@ export namespace Prisma {
     deleteMany?: CouponScalarWhereInput | CouponScalarWhereInput[]
   }
 
+  export type MerchantSessionUpdateManyWithoutMerchantNestedInput = {
+    create?: XOR<MerchantSessionCreateWithoutMerchantInput, MerchantSessionUncheckedCreateWithoutMerchantInput> | MerchantSessionCreateWithoutMerchantInput[] | MerchantSessionUncheckedCreateWithoutMerchantInput[]
+    connectOrCreate?: MerchantSessionCreateOrConnectWithoutMerchantInput | MerchantSessionCreateOrConnectWithoutMerchantInput[]
+    upsert?: MerchantSessionUpsertWithWhereUniqueWithoutMerchantInput | MerchantSessionUpsertWithWhereUniqueWithoutMerchantInput[]
+    createMany?: MerchantSessionCreateManyMerchantInputEnvelope
+    set?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    disconnect?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    delete?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    connect?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    update?: MerchantSessionUpdateWithWhereUniqueWithoutMerchantInput | MerchantSessionUpdateWithWhereUniqueWithoutMerchantInput[]
+    updateMany?: MerchantSessionUpdateManyWithWhereWithoutMerchantInput | MerchantSessionUpdateManyWithWhereWithoutMerchantInput[]
+    deleteMany?: MerchantSessionScalarWhereInput | MerchantSessionScalarWhereInput[]
+  }
+
   export type OrderUncheckedUpdateManyWithoutMerchantNestedInput = {
     create?: XOR<OrderCreateWithoutMerchantInput, OrderUncheckedCreateWithoutMerchantInput> | OrderCreateWithoutMerchantInput[] | OrderUncheckedCreateWithoutMerchantInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutMerchantInput | OrderCreateOrConnectWithoutMerchantInput[]
@@ -7672,6 +10597,34 @@ export namespace Prisma {
     update?: CouponUpdateWithWhereUniqueWithoutUsedMerchantInput | CouponUpdateWithWhereUniqueWithoutUsedMerchantInput[]
     updateMany?: CouponUpdateManyWithWhereWithoutUsedMerchantInput | CouponUpdateManyWithWhereWithoutUsedMerchantInput[]
     deleteMany?: CouponScalarWhereInput | CouponScalarWhereInput[]
+  }
+
+  export type MerchantSessionUncheckedUpdateManyWithoutMerchantNestedInput = {
+    create?: XOR<MerchantSessionCreateWithoutMerchantInput, MerchantSessionUncheckedCreateWithoutMerchantInput> | MerchantSessionCreateWithoutMerchantInput[] | MerchantSessionUncheckedCreateWithoutMerchantInput[]
+    connectOrCreate?: MerchantSessionCreateOrConnectWithoutMerchantInput | MerchantSessionCreateOrConnectWithoutMerchantInput[]
+    upsert?: MerchantSessionUpsertWithWhereUniqueWithoutMerchantInput | MerchantSessionUpsertWithWhereUniqueWithoutMerchantInput[]
+    createMany?: MerchantSessionCreateManyMerchantInputEnvelope
+    set?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    disconnect?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    delete?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    connect?: MerchantSessionWhereUniqueInput | MerchantSessionWhereUniqueInput[]
+    update?: MerchantSessionUpdateWithWhereUniqueWithoutMerchantInput | MerchantSessionUpdateWithWhereUniqueWithoutMerchantInput[]
+    updateMany?: MerchantSessionUpdateManyWithWhereWithoutMerchantInput | MerchantSessionUpdateManyWithWhereWithoutMerchantInput[]
+    deleteMany?: MerchantSessionScalarWhereInput | MerchantSessionScalarWhereInput[]
+  }
+
+  export type MerchantCreateNestedOneWithoutSessionInput = {
+    create?: XOR<MerchantCreateWithoutSessionInput, MerchantUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: MerchantCreateOrConnectWithoutSessionInput
+    connect?: MerchantWhereUniqueInput
+  }
+
+  export type MerchantUpdateOneRequiredWithoutSessionNestedInput = {
+    create?: XOR<MerchantCreateWithoutSessionInput, MerchantUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: MerchantCreateOrConnectWithoutSessionInput
+    upsert?: MerchantUpsertWithoutSessionInput
+    connect?: MerchantWhereUniqueInput
+    update?: XOR<XOR<MerchantUpdateToOneWithWhereWithoutSessionInput, MerchantUpdateWithoutSessionInput>, MerchantUncheckedUpdateWithoutSessionInput>
   }
 
   export type UserCreateNestedOneWithoutCouponsInput = {
@@ -8111,6 +11064,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserSessionCreateWithoutUserInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type UserSessionUncheckedCreateWithoutUserInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type UserSessionCreateOrConnectWithoutUserInput = {
+    where: UserSessionWhereUniqueInput
+    create: XOR<UserSessionCreateWithoutUserInput, UserSessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserSessionCreateManyUserInputEnvelope = {
+    data: UserSessionCreateManyUserInput | UserSessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CouponUpsertWithWhereUniqueWithoutUserInput = {
     where: CouponWhereUniqueInput
     update: XOR<CouponUpdateWithoutUserInput, CouponUncheckedUpdateWithoutUserInput>
@@ -8174,6 +11155,107 @@ export namespace Prisma {
     couponId?: StringNullableFilter<"Order"> | string | null
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     createdAt?: DateTimeFilter<"Order"> | Date | string
+  }
+
+  export type UserSessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserSessionWhereUniqueInput
+    update: XOR<UserSessionUpdateWithoutUserInput, UserSessionUncheckedUpdateWithoutUserInput>
+    create: XOR<UserSessionCreateWithoutUserInput, UserSessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserSessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserSessionWhereUniqueInput
+    data: XOR<UserSessionUpdateWithoutUserInput, UserSessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserSessionUpdateManyWithWhereWithoutUserInput = {
+    where: UserSessionScalarWhereInput
+    data: XOR<UserSessionUpdateManyMutationInput, UserSessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UserSessionScalarWhereInput = {
+    AND?: UserSessionScalarWhereInput | UserSessionScalarWhereInput[]
+    OR?: UserSessionScalarWhereInput[]
+    NOT?: UserSessionScalarWhereInput | UserSessionScalarWhereInput[]
+    id?: StringFilter<"UserSession"> | string
+    userId?: StringFilter<"UserSession"> | string
+    createAt?: DateTimeFilter<"UserSession"> | Date | string
+    updateAt?: DateTimeFilter<"UserSession"> | Date | string
+    expiresAt?: DateTimeFilter<"UserSession"> | Date | string
+    ip?: StringNullableFilter<"UserSession"> | string | null
+    userAgent?: StringNullableFilter<"UserSession"> | string | null
+  }
+
+  export type UserCreateWithoutSessionInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    password: string
+    avatar?: string | null
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    coupons?: CouponCreateNestedManyWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSessionInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    password: string
+    avatar?: string | null
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    coupons?: CouponUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSessionInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSessionInput, UserUncheckedCreateWithoutSessionInput>
+  }
+
+  export type UserUpsertWithoutSessionInput = {
+    update: XOR<UserUpdateWithoutSessionInput, UserUncheckedUpdateWithoutSessionInput>
+    create: XOR<UserCreateWithoutSessionInput, UserUncheckedCreateWithoutSessionInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSessionInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSessionInput, UserUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type UserUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coupons?: CouponUpdateManyWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coupons?: CouponUncheckedUpdateManyWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderCreateWithoutMerchantInput = {
@@ -8290,6 +11372,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MerchantSessionCreateWithoutMerchantInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    revoked?: boolean
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type MerchantSessionUncheckedCreateWithoutMerchantInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    revoked?: boolean
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
+  }
+
+  export type MerchantSessionCreateOrConnectWithoutMerchantInput = {
+    where: MerchantSessionWhereUniqueInput
+    create: XOR<MerchantSessionCreateWithoutMerchantInput, MerchantSessionUncheckedCreateWithoutMerchantInput>
+  }
+
+  export type MerchantSessionCreateManyMerchantInputEnvelope = {
+    data: MerchantSessionCreateManyMerchantInput | MerchantSessionCreateManyMerchantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type OrderUpsertWithWhereUniqueWithoutMerchantInput = {
     where: OrderWhereUniqueInput
     update: XOR<OrderUpdateWithoutMerchantInput, OrderUncheckedUpdateWithoutMerchantInput>
@@ -8338,6 +11450,120 @@ export namespace Prisma {
     data: XOR<CouponUpdateManyMutationInput, CouponUncheckedUpdateManyWithoutUsedMerchantInput>
   }
 
+  export type MerchantSessionUpsertWithWhereUniqueWithoutMerchantInput = {
+    where: MerchantSessionWhereUniqueInput
+    update: XOR<MerchantSessionUpdateWithoutMerchantInput, MerchantSessionUncheckedUpdateWithoutMerchantInput>
+    create: XOR<MerchantSessionCreateWithoutMerchantInput, MerchantSessionUncheckedCreateWithoutMerchantInput>
+  }
+
+  export type MerchantSessionUpdateWithWhereUniqueWithoutMerchantInput = {
+    where: MerchantSessionWhereUniqueInput
+    data: XOR<MerchantSessionUpdateWithoutMerchantInput, MerchantSessionUncheckedUpdateWithoutMerchantInput>
+  }
+
+  export type MerchantSessionUpdateManyWithWhereWithoutMerchantInput = {
+    where: MerchantSessionScalarWhereInput
+    data: XOR<MerchantSessionUpdateManyMutationInput, MerchantSessionUncheckedUpdateManyWithoutMerchantInput>
+  }
+
+  export type MerchantSessionScalarWhereInput = {
+    AND?: MerchantSessionScalarWhereInput | MerchantSessionScalarWhereInput[]
+    OR?: MerchantSessionScalarWhereInput[]
+    NOT?: MerchantSessionScalarWhereInput | MerchantSessionScalarWhereInput[]
+    id?: StringFilter<"MerchantSession"> | string
+    merchantId?: StringFilter<"MerchantSession"> | string
+    createAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    updateAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    revoked?: BoolFilter<"MerchantSession"> | boolean
+    expiresAt?: DateTimeFilter<"MerchantSession"> | Date | string
+    ip?: StringNullableFilter<"MerchantSession"> | string | null
+    userAgent?: StringNullableFilter<"MerchantSession"> | string | null
+  }
+
+  export type MerchantCreateWithoutSessionInput = {
+    id?: string
+    name: string
+    logo?: string | null
+    description?: string | null
+    address?: string | null
+    phone: string
+    email?: string | null
+    password: string
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    orders?: OrderCreateNestedManyWithoutMerchantInput
+    couponsFrom?: CouponCreateNestedManyWithoutFromMerchantInput
+    couponsUsed?: CouponCreateNestedManyWithoutUsedMerchantInput
+  }
+
+  export type MerchantUncheckedCreateWithoutSessionInput = {
+    id?: string
+    name: string
+    logo?: string | null
+    description?: string | null
+    address?: string | null
+    phone: string
+    email?: string | null
+    password: string
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    orders?: OrderUncheckedCreateNestedManyWithoutMerchantInput
+    couponsFrom?: CouponUncheckedCreateNestedManyWithoutFromMerchantInput
+    couponsUsed?: CouponUncheckedCreateNestedManyWithoutUsedMerchantInput
+  }
+
+  export type MerchantCreateOrConnectWithoutSessionInput = {
+    where: MerchantWhereUniqueInput
+    create: XOR<MerchantCreateWithoutSessionInput, MerchantUncheckedCreateWithoutSessionInput>
+  }
+
+  export type MerchantUpsertWithoutSessionInput = {
+    update: XOR<MerchantUpdateWithoutSessionInput, MerchantUncheckedUpdateWithoutSessionInput>
+    create: XOR<MerchantCreateWithoutSessionInput, MerchantUncheckedCreateWithoutSessionInput>
+    where?: MerchantWhereInput
+  }
+
+  export type MerchantUpdateToOneWithWhereWithoutSessionInput = {
+    where?: MerchantWhereInput
+    data: XOR<MerchantUpdateWithoutSessionInput, MerchantUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type MerchantUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUpdateManyWithoutMerchantNestedInput
+    couponsFrom?: CouponUpdateManyWithoutFromMerchantNestedInput
+    couponsUsed?: CouponUpdateManyWithoutUsedMerchantNestedInput
+  }
+
+  export type MerchantUncheckedUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUncheckedUpdateManyWithoutMerchantNestedInput
+    couponsFrom?: CouponUncheckedUpdateManyWithoutFromMerchantNestedInput
+    couponsUsed?: CouponUncheckedUpdateManyWithoutUsedMerchantNestedInput
+  }
+
   export type UserCreateWithoutCouponsInput = {
     id?: string
     name: string
@@ -8349,6 +11575,7 @@ export namespace Prisma {
     lastLogin?: Date | string | null
     createdAt?: Date | string
     orders?: OrderCreateNestedManyWithoutUserInput
+    session?: UserSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCouponsInput = {
@@ -8362,6 +11589,7 @@ export namespace Prisma {
     lastLogin?: Date | string | null
     createdAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    session?: UserSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCouponsInput = {
@@ -8383,6 +11611,7 @@ export namespace Prisma {
     createdAt?: Date | string
     orders?: OrderCreateNestedManyWithoutMerchantInput
     couponsUsed?: CouponCreateNestedManyWithoutUsedMerchantInput
+    session?: MerchantSessionCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantUncheckedCreateWithoutCouponsFromInput = {
@@ -8399,6 +11628,7 @@ export namespace Prisma {
     createdAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutMerchantInput
     couponsUsed?: CouponUncheckedCreateNestedManyWithoutUsedMerchantInput
+    session?: MerchantSessionUncheckedCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantCreateOrConnectWithoutCouponsFromInput = {
@@ -8420,6 +11650,7 @@ export namespace Prisma {
     createdAt?: Date | string
     orders?: OrderCreateNestedManyWithoutMerchantInput
     couponsFrom?: CouponCreateNestedManyWithoutFromMerchantInput
+    session?: MerchantSessionCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantUncheckedCreateWithoutCouponsUsedInput = {
@@ -8436,6 +11667,7 @@ export namespace Prisma {
     createdAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutMerchantInput
     couponsFrom?: CouponUncheckedCreateNestedManyWithoutFromMerchantInput
+    session?: MerchantSessionUncheckedCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantCreateOrConnectWithoutCouponsUsedInput = {
@@ -8490,6 +11722,7 @@ export namespace Prisma {
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutUserNestedInput
+    session?: UserSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCouponsInput = {
@@ -8503,6 +11736,7 @@ export namespace Prisma {
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    session?: UserSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MerchantUpsertWithoutCouponsFromInput = {
@@ -8530,6 +11764,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutMerchantNestedInput
     couponsUsed?: CouponUpdateManyWithoutUsedMerchantNestedInput
+    session?: MerchantSessionUpdateManyWithoutMerchantNestedInput
   }
 
   export type MerchantUncheckedUpdateWithoutCouponsFromInput = {
@@ -8546,6 +11781,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutMerchantNestedInput
     couponsUsed?: CouponUncheckedUpdateManyWithoutUsedMerchantNestedInput
+    session?: MerchantSessionUncheckedUpdateManyWithoutMerchantNestedInput
   }
 
   export type MerchantUpsertWithoutCouponsUsedInput = {
@@ -8573,6 +11809,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutMerchantNestedInput
     couponsFrom?: CouponUpdateManyWithoutFromMerchantNestedInput
+    session?: MerchantSessionUpdateManyWithoutMerchantNestedInput
   }
 
   export type MerchantUncheckedUpdateWithoutCouponsUsedInput = {
@@ -8589,6 +11826,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutMerchantNestedInput
     couponsFrom?: CouponUncheckedUpdateManyWithoutFromMerchantNestedInput
+    session?: MerchantSessionUncheckedUpdateManyWithoutMerchantNestedInput
   }
 
   export type OrderUpsertWithoutCouponInput = {
@@ -8633,6 +11871,7 @@ export namespace Prisma {
     lastLogin?: Date | string | null
     createdAt?: Date | string
     coupons?: CouponCreateNestedManyWithoutUserInput
+    session?: UserSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -8646,6 +11885,7 @@ export namespace Prisma {
     lastLogin?: Date | string | null
     createdAt?: Date | string
     coupons?: CouponUncheckedCreateNestedManyWithoutUserInput
+    session?: UserSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -8667,6 +11907,7 @@ export namespace Prisma {
     createdAt?: Date | string
     couponsFrom?: CouponCreateNestedManyWithoutFromMerchantInput
     couponsUsed?: CouponCreateNestedManyWithoutUsedMerchantInput
+    session?: MerchantSessionCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantUncheckedCreateWithoutOrdersInput = {
@@ -8683,6 +11924,7 @@ export namespace Prisma {
     createdAt?: Date | string
     couponsFrom?: CouponUncheckedCreateNestedManyWithoutFromMerchantInput
     couponsUsed?: CouponUncheckedCreateNestedManyWithoutUsedMerchantInput
+    session?: MerchantSessionUncheckedCreateNestedManyWithoutMerchantInput
   }
 
   export type MerchantCreateOrConnectWithoutOrdersInput = {
@@ -8749,6 +11991,7 @@ export namespace Prisma {
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     coupons?: CouponUpdateManyWithoutUserNestedInput
+    session?: UserSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -8762,6 +12005,7 @@ export namespace Prisma {
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     coupons?: CouponUncheckedUpdateManyWithoutUserNestedInput
+    session?: UserSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MerchantUpsertWithoutOrdersInput = {
@@ -8789,6 +12033,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     couponsFrom?: CouponUpdateManyWithoutFromMerchantNestedInput
     couponsUsed?: CouponUpdateManyWithoutUsedMerchantNestedInput
+    session?: MerchantSessionUpdateManyWithoutMerchantNestedInput
   }
 
   export type MerchantUncheckedUpdateWithoutOrdersInput = {
@@ -8805,6 +12050,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     couponsFrom?: CouponUncheckedUpdateManyWithoutFromMerchantNestedInput
     couponsUsed?: CouponUncheckedUpdateManyWithoutUsedMerchantNestedInput
+    session?: MerchantSessionUncheckedUpdateManyWithoutMerchantNestedInput
   }
 
   export type CouponUpsertWithoutOrderInput = {
@@ -8873,6 +12119,15 @@ export namespace Prisma {
     couponId?: string | null
     status: $Enums.OrderStatus
     createdAt?: Date | string
+  }
+
+  export type UserSessionCreateManyUserInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
   }
 
   export type CouponUpdateWithoutUserInput = {
@@ -8952,6 +12207,33 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserSessionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserSessionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserSessionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type OrderCreateManyMerchantInput = {
     id?: string
     userId: string
@@ -8990,6 +12272,16 @@ export namespace Prisma {
     usedAt?: Date | string | null
     issuedAt?: Date | string
     expiredAt: Date | string
+  }
+
+  export type MerchantSessionCreateManyMerchantInput = {
+    id?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    revoked?: boolean
+    expiresAt: Date | string
+    ip?: string | null
+    userAgent?: string | null
   }
 
   export type OrderUpdateWithoutMerchantInput = {
@@ -9114,6 +12406,36 @@ export namespace Prisma {
     usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MerchantSessionUpdateWithoutMerchantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MerchantSessionUncheckedUpdateWithoutMerchantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MerchantSessionUncheckedUpdateManyWithoutMerchantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

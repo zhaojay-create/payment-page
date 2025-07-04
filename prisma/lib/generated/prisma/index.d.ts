@@ -8919,7 +8919,7 @@ export namespace Prisma {
 
   export type MerchantWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    email?: string
+    phone?: string
     AND?: MerchantWhereInput | MerchantWhereInput[]
     OR?: MerchantWhereInput[]
     NOT?: MerchantWhereInput | MerchantWhereInput[]
@@ -8927,7 +8927,7 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Merchant"> | string | null
     description?: StringNullableFilter<"Merchant"> | string | null
     address?: StringNullableFilter<"Merchant"> | string | null
-    phone?: StringFilter<"Merchant"> | string
+    email?: StringNullableFilter<"Merchant"> | string | null
     password?: StringFilter<"Merchant"> | string
     isActive?: BoolFilter<"Merchant"> | boolean
     lastLogin?: DateTimeNullableFilter<"Merchant"> | Date | string | null
@@ -8936,7 +8936,7 @@ export namespace Prisma {
     couponsFrom?: CouponListRelationFilter
     couponsUsed?: CouponListRelationFilter
     session?: MerchantSessionListRelationFilter
-  }, "id" | "email">
+  }, "id" | "phone">
 
   export type MerchantOrderByWithAggregationInput = {
     id?: SortOrder

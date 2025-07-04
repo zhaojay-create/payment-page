@@ -67,8 +67,8 @@ model Merchant {
   description String?
   address     String?
 
-  phone    String
-  email    String? @unique // 商户邮箱
+  phone    String  @unique
+  email    String?
   password String // 商户登录密码
 
   isActive  Boolean   @default(true) // 商户是否激活

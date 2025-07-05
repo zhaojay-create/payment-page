@@ -17,7 +17,6 @@ export async function middleware(request: NextRequest) {
   // 3. 检查用户是否登录
   const cookie = (await cookies()).get("session")?.value;
   const session = await verifyJwt(cookie);
-  console.log("session: ", session);
 
   // 4. 如果是受保护路由，检查用户是否登录
   if (isProtectedRoute && !session) {

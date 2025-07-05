@@ -14,7 +14,7 @@ export async function createSession(userId: string) {
     },
   });
   // 2. 生成 JWT
-  const session = await signJwt({ userId: userSession.id, expiresAt });
+  const session = await signJwt({ userSessionId: userSession.id, expiresAt });
   // 3. 设置 cookie
   const cookieStore = await cookies();
 

@@ -16,6 +16,9 @@ export async function signJwt(payload: SessionPayload) {
 
 // 验证 JWT
 export async function verifyJwt(session: string | undefined = "") {
+  if (!session) {
+    return null;
+  }
   try {
     const { payload } = await jwtVerify(session, JWT_SECRET);
     return payload;

@@ -1,8 +1,8 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +15,7 @@ import {
 import * as z from "zod/v4";
 
 import { Coupon } from "@/prisma/lib/generated/prisma";
-import { getOrCreateUserId } from "@/utils/uuid";
+import useCashbackCoupon from "@/store/useCashbackCoupon";
 
 const amountSchema = z.string().refine(
   (val) => {
@@ -32,23 +32,12 @@ const Page = () => {
   const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
   const [amount, setAmount] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const searchParams = useSearchParams();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogMsg, setDialogMsg] = useState("");
-
-  // 拼接参数
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const { setCashbackCoupon } = useCashbackCoupon();
 
   useEffect(() => {
-    fetch("/api/coupon")
+    fetch("/api/coupon/query")
       .then((res) => res.json())
       .then((response) => {
         if (response.success !== false) {
@@ -68,22 +57,21 @@ const Page = () => {
     setError(null);
     // 创建订单
     try {
-      const response = await fetch("/api/order/create", {
+      const response = await fetch("/api/order/paySuccess", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          slug,
+          merchantId: slug,
           amount,
           couponId: selectedCouponId,
         }),
       });
       const res = await response.json();
       if (res.success === true) {
-        router.push(
-          `/h5pay/success?${createQueryString("orderId", res.order.id)}`
-        );
+        setCashbackCoupon(res.cashbackCoupon);
+        router.push("/success");
       } else {
         setDialogMsg(res.message || "创建订单失败，请稍后重试");
         setDialogOpen(true);
@@ -107,7 +95,7 @@ const Page = () => {
             商户ID: {slug}
           </div>
           <div className="text-center text-xs text-gray-400 mb-2">
-            用户ID: {getOrCreateUserId()}
+            用户ID: {}
           </div>
         </div>
 

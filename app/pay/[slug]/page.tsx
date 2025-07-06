@@ -70,8 +70,9 @@ const Page = () => {
       });
       const res = await response.json();
       if (res.success === true) {
-        setCashbackCoupon(res.cashbackCoupon);
-        router.push("/success");
+        window.location.href = res.alipayUrl;
+        // setCashbackCoupon(res.cashbackCoupon);
+        // router.push("/success");
       } else {
         setDialogMsg(res.message || "创建订单失败，请稍后重试");
         setDialogOpen(true);
@@ -81,6 +82,18 @@ const Page = () => {
       setDialogOpen(true);
       console.error("error: ", error);
     }
+  };
+
+  const handlePay = async () => {
+    const res = await fetch("/api/pay/create");
+    if (res.redirected) {
+      window.location.href = res.url;
+    }
+  };
+
+  const handleQuery = async () => {
+    const res = await fetch("/api/pay/query");
+    console.log("res: ", res);
   };
 
   return (
@@ -98,6 +111,18 @@ const Page = () => {
             用户ID: {}
           </div>
         </div>
+        <button
+          className="bg-blue-500 text-white px-6 py-2 rounded-full text-sm hover:bg-blue-600 transition"
+          onClick={handlePay}
+        >
+          下单
+        </button>
+        <button
+          className="bg-blue-500 text-white px-6 py-2 rounded-full text-sm hover:bg-blue-600 transition"
+          onClick={handleQuery}
+        >
+          查询
+        </button>
 
         {/* 金额输入 */}
         <form

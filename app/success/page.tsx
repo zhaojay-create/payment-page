@@ -2,6 +2,8 @@
 
 import useCashbackCoupon from "@/store/useCashbackCoupon";
 
+// http://localhost:3000/success?charset=utf-8&out_trade_no=e964d6a1-e890-491d-b025-e9eddb850a98&method=alipay.trade.wap.pay.return&total_amount=3.00&sign=W3atBxw4KqxOqShGYYcMjHJO2hoVhZtTcj%2FqyzxvjsjK1KLVHYYivOBHPKQpHYAakg%2FTG2%2B48PcMgqk2tGZTgdbEjB1IOUYW9im64PlrejSiu2PvA0Fx74l2NAdxqGdtt3a8b5pLeS7h1Vj89tDn1EQiq9lxfRv3Y%2BJQnjV%2By5zAtj8YVktNxn67hSpomid%2F2lQltlVthkwQu65G61zDqwXuELnu391uqmxCVsAF0hyXW3s5Huo8Vl8T3yDX1%2BRdlt78gq5%2F7rA5fIBYLLSyhNB4sb4jtXUXNKasFRBDujh4Kgt8Y0M6CTfmH0aeGH%2Fsa1k5Mr7cWYiw%2BeYU%2BowqkQ%3D%3D&trade_no=2025070622001461090506641854&auth_app_id=9021000150615348&version=1.0&app_id=9021000150615348&sign_type=RSA2&seller_id=2088721072410431&timestamp=2025-07-06+23%3A30%3A41
+
 const Page = () => {
   const { cashbackCoupon } = useCashbackCoupon();
   const { title, description, amount, expiredAt } = cashbackCoupon || {};

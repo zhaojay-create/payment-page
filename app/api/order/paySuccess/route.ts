@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
       totalAmount: finalAmount,
       subject: "商圈扫码支付",
       returnUrl: "http://localhost:3000/success", // 支付后同步回跳地址
-      notifyUrl: "https://1676-1-192-59-247.ngrok-free.app/api/pay/notify", // 支付结果异步通知
+      notifyUrl: "https://1676-1-192-59-247.ngrok-free.app/api/order/notify", // 支付结果异步通知
     });
 
     return NextResponse.json({
@@ -90,38 +90,6 @@ export async function POST(req: NextRequest) {
       message: "链接生成成功",
       alipayUrl,
     });
-    // return NextResponse.redirect(alipayUrl);
-
-    // // 5. 更新优惠券状态
-    //   if (coupon) {
-    //     await prisma.coupon.update({
-    //       where: { id: coupon.id },
-    //       data: { status: CouponStatus.used },
-    //     });
-    //   }
-
-    //   // 6. 给下单的用户，创建新的优惠券
-    //   const couponAmout = Math.floor(finalAmount / 10).toFixed(2);
-    //   const cashbackCoupon = await prisma.coupon.create({
-    //     data: {
-    //       userId: user.id,
-    //       fromMerchantId: merchantId,
-    //       amount: couponAmout,
-    //       status: CouponStatus.unused,
-    //       couponType: CouponType.cashback,
-    //       title: "下单返现券",
-    //       expiredAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    //     },
-    //   });
-
-    //   // 示例返回
-    //   return NextResponse.json({
-    //     success: true,
-    //     message: "订单创建成功",
-    //     orderId: order.id,
-    //     cashbackCoupon,
-    //     // user,
-    //   });
   } catch (error) {
     console.error("error: create order error", error);
     return NextResponse.json(

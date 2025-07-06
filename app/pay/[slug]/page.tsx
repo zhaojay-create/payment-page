@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   AlertDialog,
@@ -15,7 +15,7 @@ import {
 import * as z from "zod/v4";
 
 import { Coupon } from "@/prisma/lib/generated/prisma";
-import useCashbackCoupon from "@/store/useCashbackCoupon";
+// import useCashbackCoupon from "@/store/useCashbackCoupon";
 
 const amountSchema = z.string().refine(
   (val) => {
@@ -27,14 +27,14 @@ const amountSchema = z.string().refine(
 
 const Page = () => {
   const { slug } = useParams(); // 获取商户ID todo: 需要校验商户ID是否合法
-  const router = useRouter();
+  // const router = useRouter();
   const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
   const [amount, setAmount] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogMsg, setDialogMsg] = useState("");
-  const { setCashbackCoupon } = useCashbackCoupon();
+  // const { setCashbackCoupon } = useCashbackCoupon();
 
   useEffect(() => {
     fetch("/api/coupon/query")
@@ -84,18 +84,6 @@ const Page = () => {
     }
   };
 
-  const handlePay = async () => {
-    const res = await fetch("/api/pay/create");
-    if (res.redirected) {
-      window.location.href = res.url;
-    }
-  };
-
-  const handleQuery = async () => {
-    const res = await fetch("/api/pay/query");
-    console.log("res: ", res);
-  };
-
   return (
     <div className="min-h-screen bg-[#f7f8fa] flex flex-col items-center pt-8">
       <div className="w-full max-w-md">
@@ -111,18 +99,6 @@ const Page = () => {
             用户ID: {}
           </div>
         </div>
-        <button
-          className="bg-blue-500 text-white px-6 py-2 rounded-full text-sm hover:bg-blue-600 transition"
-          onClick={handlePay}
-        >
-          下单
-        </button>
-        <button
-          className="bg-blue-500 text-white px-6 py-2 rounded-full text-sm hover:bg-blue-600 transition"
-          onClick={handleQuery}
-        >
-          查询
-        </button>
 
         {/* 金额输入 */}
         <form

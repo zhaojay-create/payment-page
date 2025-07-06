@@ -6091,6 +6091,7 @@ export namespace Prisma {
     fromMerchantId: string | null
     usedMerchantId: string | null
     orderId: string | null
+    sourceOrderId: string | null
     amount: Decimal | null
     status: $Enums.CouponStatus | null
     couponType: $Enums.CouponType | null
@@ -6107,6 +6108,7 @@ export namespace Prisma {
     fromMerchantId: string | null
     usedMerchantId: string | null
     orderId: string | null
+    sourceOrderId: string | null
     amount: Decimal | null
     status: $Enums.CouponStatus | null
     couponType: $Enums.CouponType | null
@@ -6123,6 +6125,7 @@ export namespace Prisma {
     fromMerchantId: number
     usedMerchantId: number
     orderId: number
+    sourceOrderId: number
     amount: number
     status: number
     couponType: number
@@ -6149,6 +6152,7 @@ export namespace Prisma {
     fromMerchantId?: true
     usedMerchantId?: true
     orderId?: true
+    sourceOrderId?: true
     amount?: true
     status?: true
     couponType?: true
@@ -6165,6 +6169,7 @@ export namespace Prisma {
     fromMerchantId?: true
     usedMerchantId?: true
     orderId?: true
+    sourceOrderId?: true
     amount?: true
     status?: true
     couponType?: true
@@ -6181,6 +6186,7 @@ export namespace Prisma {
     fromMerchantId?: true
     usedMerchantId?: true
     orderId?: true
+    sourceOrderId?: true
     amount?: true
     status?: true
     couponType?: true
@@ -6284,6 +6290,7 @@ export namespace Prisma {
     fromMerchantId: string
     usedMerchantId: string | null
     orderId: string | null
+    sourceOrderId: string | null
     amount: Decimal
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -6319,6 +6326,7 @@ export namespace Prisma {
     fromMerchantId?: boolean
     usedMerchantId?: boolean
     orderId?: boolean
+    sourceOrderId?: boolean
     amount?: boolean
     status?: boolean
     couponType?: boolean
@@ -6339,6 +6347,7 @@ export namespace Prisma {
     fromMerchantId?: boolean
     usedMerchantId?: boolean
     orderId?: boolean
+    sourceOrderId?: boolean
     amount?: boolean
     status?: boolean
     couponType?: boolean
@@ -6358,6 +6367,7 @@ export namespace Prisma {
     fromMerchantId?: boolean
     usedMerchantId?: boolean
     orderId?: boolean
+    sourceOrderId?: boolean
     amount?: boolean
     status?: boolean
     couponType?: boolean
@@ -6377,6 +6387,7 @@ export namespace Prisma {
     fromMerchantId?: boolean
     usedMerchantId?: boolean
     orderId?: boolean
+    sourceOrderId?: boolean
     amount?: boolean
     status?: boolean
     couponType?: boolean
@@ -6387,7 +6398,7 @@ export namespace Prisma {
     expiredAt?: boolean
   }
 
-  export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fromMerchantId" | "usedMerchantId" | "orderId" | "amount" | "status" | "couponType" | "description" | "title" | "usedAt" | "issuedAt" | "expiredAt", ExtArgs["result"]["coupon"]>
+  export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fromMerchantId" | "usedMerchantId" | "orderId" | "sourceOrderId" | "amount" | "status" | "couponType" | "description" | "title" | "usedAt" | "issuedAt" | "expiredAt", ExtArgs["result"]["coupon"]>
   export type CouponInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     fromMerchant?: boolean | MerchantDefaultArgs<ExtArgs>
@@ -6419,6 +6430,7 @@ export namespace Prisma {
       fromMerchantId: string
       usedMerchantId: string | null
       orderId: string | null
+      sourceOrderId: string | null
       amount: Prisma.Decimal
       status: $Enums.CouponStatus
       couponType: $Enums.CouponType
@@ -6859,6 +6871,7 @@ export namespace Prisma {
     readonly fromMerchantId: FieldRef<"Coupon", 'String'>
     readonly usedMerchantId: FieldRef<"Coupon", 'String'>
     readonly orderId: FieldRef<"Coupon", 'String'>
+    readonly sourceOrderId: FieldRef<"Coupon", 'String'>
     readonly amount: FieldRef<"Coupon", 'Decimal'>
     readonly status: FieldRef<"Coupon", 'CouponStatus'>
     readonly couponType: FieldRef<"Coupon", 'CouponType'>
@@ -8568,6 +8581,7 @@ export namespace Prisma {
     fromMerchantId: 'fromMerchantId',
     usedMerchantId: 'usedMerchantId',
     orderId: 'orderId',
+    sourceOrderId: 'sourceOrderId',
     amount: 'amount',
     status: 'status',
     couponType: 'couponType',
@@ -9051,6 +9065,7 @@ export namespace Prisma {
     fromMerchantId?: StringFilter<"Coupon"> | string
     usedMerchantId?: StringNullableFilter<"Coupon"> | string | null
     orderId?: StringNullableFilter<"Coupon"> | string | null
+    sourceOrderId?: StringNullableFilter<"Coupon"> | string | null
     amount?: DecimalFilter<"Coupon"> | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFilter<"Coupon"> | $Enums.CouponStatus
     couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
@@ -9071,6 +9086,7 @@ export namespace Prisma {
     fromMerchantId?: SortOrder
     usedMerchantId?: SortOrderInput | SortOrder
     orderId?: SortOrderInput | SortOrder
+    sourceOrderId?: SortOrderInput | SortOrder
     amount?: SortOrder
     status?: SortOrder
     couponType?: SortOrder
@@ -9094,6 +9110,7 @@ export namespace Prisma {
     userId?: StringFilter<"Coupon"> | string
     fromMerchantId?: StringFilter<"Coupon"> | string
     usedMerchantId?: StringNullableFilter<"Coupon"> | string | null
+    sourceOrderId?: StringNullableFilter<"Coupon"> | string | null
     amount?: DecimalFilter<"Coupon"> | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFilter<"Coupon"> | $Enums.CouponStatus
     couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
@@ -9114,6 +9131,7 @@ export namespace Prisma {
     fromMerchantId?: SortOrder
     usedMerchantId?: SortOrderInput | SortOrder
     orderId?: SortOrderInput | SortOrder
+    sourceOrderId?: SortOrderInput | SortOrder
     amount?: SortOrder
     status?: SortOrder
     couponType?: SortOrder
@@ -9138,6 +9156,7 @@ export namespace Prisma {
     fromMerchantId?: StringWithAggregatesFilter<"Coupon"> | string
     usedMerchantId?: StringNullableWithAggregatesFilter<"Coupon"> | string | null
     orderId?: StringNullableWithAggregatesFilter<"Coupon"> | string | null
+    sourceOrderId?: StringNullableWithAggregatesFilter<"Coupon"> | string | null
     amount?: DecimalWithAggregatesFilter<"Coupon"> | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusWithAggregatesFilter<"Coupon"> | $Enums.CouponStatus
     couponType?: EnumCouponTypeWithAggregatesFilter<"Coupon"> | $Enums.CouponType
@@ -9584,6 +9603,7 @@ export namespace Prisma {
   export type CouponCreateInput = {
     id?: string
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -9604,6 +9624,7 @@ export namespace Prisma {
     fromMerchantId: string
     usedMerchantId?: string | null
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -9618,6 +9639,7 @@ export namespace Prisma {
   export type CouponUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -9638,6 +9660,7 @@ export namespace Prisma {
     fromMerchantId?: StringFieldUpdateOperationsInput | string
     usedMerchantId?: NullableStringFieldUpdateOperationsInput | string | null
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -9655,6 +9678,7 @@ export namespace Prisma {
     fromMerchantId: string
     usedMerchantId?: string | null
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -9668,6 +9692,7 @@ export namespace Prisma {
   export type CouponUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -9684,6 +9709,7 @@ export namespace Prisma {
     fromMerchantId?: StringFieldUpdateOperationsInput | string
     usedMerchantId?: NullableStringFieldUpdateOperationsInput | string | null
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -10134,6 +10160,7 @@ export namespace Prisma {
     fromMerchantId?: SortOrder
     usedMerchantId?: SortOrder
     orderId?: SortOrder
+    sourceOrderId?: SortOrder
     amount?: SortOrder
     status?: SortOrder
     couponType?: SortOrder
@@ -10154,6 +10181,7 @@ export namespace Prisma {
     fromMerchantId?: SortOrder
     usedMerchantId?: SortOrder
     orderId?: SortOrder
+    sourceOrderId?: SortOrder
     amount?: SortOrder
     status?: SortOrder
     couponType?: SortOrder
@@ -10170,6 +10198,7 @@ export namespace Prisma {
     fromMerchantId?: SortOrder
     usedMerchantId?: SortOrder
     orderId?: SortOrder
+    sourceOrderId?: SortOrder
     amount?: SortOrder
     status?: SortOrder
     couponType?: SortOrder
@@ -10995,6 +11024,7 @@ export namespace Prisma {
   export type CouponCreateWithoutUserInput = {
     id?: string
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -11013,6 +11043,7 @@ export namespace Prisma {
     fromMerchantId: string
     usedMerchantId?: string | null
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -11117,6 +11148,7 @@ export namespace Prisma {
     fromMerchantId?: StringFilter<"Coupon"> | string
     usedMerchantId?: StringNullableFilter<"Coupon"> | string | null
     orderId?: StringNullableFilter<"Coupon"> | string | null
+    sourceOrderId?: StringNullableFilter<"Coupon"> | string | null
     amount?: DecimalFilter<"Coupon"> | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFilter<"Coupon"> | $Enums.CouponStatus
     couponType?: EnumCouponTypeFilter<"Coupon"> | $Enums.CouponType
@@ -11291,6 +11323,7 @@ export namespace Prisma {
   export type CouponCreateWithoutFromMerchantInput = {
     id?: string
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -11309,6 +11342,7 @@ export namespace Prisma {
     userId: string
     usedMerchantId?: string | null
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -11333,6 +11367,7 @@ export namespace Prisma {
   export type CouponCreateWithoutUsedMerchantInput = {
     id?: string
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -11351,6 +11386,7 @@ export namespace Prisma {
     userId: string
     fromMerchantId: string
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -11935,6 +11971,7 @@ export namespace Prisma {
   export type CouponCreateWithoutOrderInput = {
     id?: string
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -11954,6 +11991,7 @@ export namespace Prisma {
     fromMerchantId: string
     usedMerchantId?: string | null
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -12067,6 +12105,7 @@ export namespace Prisma {
   export type CouponUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12086,6 +12125,7 @@ export namespace Prisma {
     fromMerchantId?: StringFieldUpdateOperationsInput | string
     usedMerchantId?: NullableStringFieldUpdateOperationsInput | string | null
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12101,6 +12141,7 @@ export namespace Prisma {
     fromMerchantId: string
     usedMerchantId?: string | null
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -12133,6 +12174,7 @@ export namespace Prisma {
   export type CouponUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12151,6 +12193,7 @@ export namespace Prisma {
     fromMerchantId?: StringFieldUpdateOperationsInput | string
     usedMerchantId?: NullableStringFieldUpdateOperationsInput | string | null
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12167,6 +12210,7 @@ export namespace Prisma {
     fromMerchantId?: StringFieldUpdateOperationsInput | string
     usedMerchantId?: NullableStringFieldUpdateOperationsInput | string | null
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12249,6 +12293,7 @@ export namespace Prisma {
     userId: string
     usedMerchantId?: string | null
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -12264,6 +12309,7 @@ export namespace Prisma {
     userId: string
     fromMerchantId: string
     orderId?: string | null
+    sourceOrderId?: string | null
     amount: Decimal | DecimalJsLike | number | string
     status: $Enums.CouponStatus
     couponType: $Enums.CouponType
@@ -12317,6 +12363,7 @@ export namespace Prisma {
   export type CouponUpdateWithoutFromMerchantInput = {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12335,6 +12382,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     usedMerchantId?: NullableStringFieldUpdateOperationsInput | string | null
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12351,6 +12399,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     usedMerchantId?: NullableStringFieldUpdateOperationsInput | string | null
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12364,6 +12413,7 @@ export namespace Prisma {
   export type CouponUpdateWithoutUsedMerchantInput = {
     id?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12382,6 +12432,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     fromMerchantId?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
@@ -12398,6 +12449,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     fromMerchantId?: StringFieldUpdateOperationsInput | string
     orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceOrderId?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumCouponStatusFieldUpdateOperationsInput | $Enums.CouponStatus
     couponType?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType

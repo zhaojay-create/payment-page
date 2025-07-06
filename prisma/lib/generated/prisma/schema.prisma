@@ -104,8 +104,9 @@ model Coupon {
   usedMerchantId String? // 哪个商户使用了该券
   usedMerchant   Merchant? @relation("UsedMerchant", fields: [usedMerchantId], references: [id]) // 使用该券的商户
 
-  orderId String? @unique // 该券在哪个订单中被使用
-  order   Order?  @relation("OrderCoupon") // 关联的订单
+  orderId       String? @unique // 该券在哪个订单中被使用
+  order         Order?  @relation("OrderCoupon") // 关联的订单
+  sourceOrderId String? // ✅ 由哪个订单生成的券（新券）
 
   amount      Decimal      @db.Decimal(10, 2) // 券金额
   status      CouponStatus // unused | used | expired

@@ -173,6 +173,7 @@ exports.Prisma.CouponScalarFieldEnum = {
   fromMerchantId: 'fromMerchantId',
   usedMerchantId: 'usedMerchantId',
   orderId: 'orderId',
+  sourceOrderId: 'sourceOrderId',
   amount: 'amount',
   status: 'status',
   couponType: 'couponType',

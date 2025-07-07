@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HelloHeader from "@/components/common/HelloHeader";
+import RecentCoupons from "@/components/common/RecentCoupons";
 
 const Page = () => {
   return (
@@ -8,21 +9,7 @@ const Page = () => {
       <HelloHeader />
 
       {/* 最近优惠券 */}
-      <div className="bg-white rounded-xl p-4 shadow">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-lg font-semibold">最近获得的返利券</span>
-          <Link href="/profile/coupons" className="text-blue-500 text-sm">
-            查看全部
-          </Link>
-        </div>
-        <div className="bg-[#f1f5f9] p-3 rounded-lg">
-          <div className="flex justify-between">
-            <span className="font-bold text-green-600 text-lg">¥5.00</span>
-            <span className="text-sm text-gray-500">来自：商家A</span>
-          </div>
-          <div className="text-xs text-gray-400">有效期至：2025-07-20</div>
-        </div>
-      </div>
+      <RecentCoupons />
 
       {/* 推荐商户 */}
       <div className="bg-white rounded-xl p-4 shadow">

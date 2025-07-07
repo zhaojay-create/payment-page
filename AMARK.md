@@ -28,3 +28,8 @@
 商圈返利方案。大致的流程，用户在商家 A 消费后，会获得通用消费券（此次消费的 5%返利），用户也可以在商家 B 消费，商家 A 和商家 B 都属于同一个商圈，在商家 B 消费后，会继续获取（此次消费的 5%返利），让用户在商圈内流转。
 B 端（商家/运营）使用，nextjs 开发，商家可以通过图表查看近期的收益状况，
 C 端（商家/用户）使用，react native 开发，用户可以参与活动领取消费券，用户可以查看自己消费了多少钱，使用了多少消费券，并且内置记账系统。
+
+1. “Can you explain the difference between useEffect and useLayoutEffect in React?”
+   ”useEffect runs after the component has rendered and the browser has painted the screen. It’s good for side effects like fetching data or setting up subscriptions.”
+   ”useLayoutEffect runs right after rendering but before the browser paints. It’s used when you need to measure DOM elements or apply layout changes to avoid flickering.”
+   In short, useEffect is asynchronous and non-blocking, while useLayoutEffect is synchronous and blocks the painting. You should only use useLayoutEffect when you really need to manipulate the layout before the screen updates.”

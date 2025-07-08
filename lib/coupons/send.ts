@@ -44,7 +44,7 @@ export async function sendCoupon() {
         expiredAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
-    return serializeCoupon(coupon);
+    return { ...serializeCoupon(coupon), error: null };
   } catch (error) {
     console.error("error: ", error);
     return { error: "发券失败" };

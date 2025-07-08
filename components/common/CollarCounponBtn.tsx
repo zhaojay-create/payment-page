@@ -9,7 +9,7 @@ import { sendCoupon } from "@/lib/coupons/send";
 const CollarCounponBtn: FC = () => {
   // const [, action, pending] = useActionState(sendCoupon, undefined);
   const router = useRouter();
-  const [, action, pending] = useActionState(async () => {
+  const [state, action, pending] = useActionState(async () => {
     const result = await sendCoupon();
     router.refresh(); // 关键：刷新页面，RecentCoupons 会重新获取数据
     return result;
@@ -24,7 +24,7 @@ const CollarCounponBtn: FC = () => {
       >
         {pending ? "加速领取中..." : "一键领取"}
       </Button>
-      {/* {state?.error && <p className="text-red-500 text-sm">{state.error}</p>} */}
+      {state?.error && <p className="text-red-500 text-sm">{state.error}</p>}
     </form>
   );
 };

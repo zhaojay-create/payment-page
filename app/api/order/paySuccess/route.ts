@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
       outTradeNo: order.id,
       totalAmount: finalAmount,
       subject: "商圈扫码支付",
-      returnUrl: "http://localhost:3000/success", // 支付后同步回跳地址
+      returnUrl: "http://localhost:3000/pay/success", // 支付后同步回跳地址
       notifyUrl: "https://1676-1-192-59-247.ngrok-free.app/api/order/notify", // 支付结果异步通知
     });
 

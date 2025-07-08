@@ -13,7 +13,7 @@ export default function NotFound() {
         抱歉，您访问的页面不存在或已被删除。
       </p>
       <button
-        onClick={() => router.push("/h5pay/c")}
+        onClick={() => router.push("/")}
         className="bg-blue-500 text-white px-6 py-2 rounded-full text-sm hover:bg-blue-600 transition"
       >
         返回首页

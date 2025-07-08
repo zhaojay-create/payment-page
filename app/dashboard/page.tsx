@@ -5,7 +5,7 @@ import FooterNavLink from "@/components/common/FooterNavLink";
 
 const Page = () => {
   return (
-    <div className="min-h-screen bg-[#f8f9fa] p-4 space-y-6">
+    <>
       {/* 顶部欢迎 */}
       <HelloHeader />
 
@@ -17,7 +17,7 @@ const Page = () => {
 
       {/* 底部导航（选配） */}
       <FooterNavLink />
-    </div>
+    </>
   );
 };
 

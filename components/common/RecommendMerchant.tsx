@@ -18,7 +18,7 @@ const RecommendMerchant: FC = async () => {
       <div className="space-y-3">
         {merchants.map((item, idx) => (
           <Link
-            href={`/pay/${item.id}}`}
+            href={`/pay/${item.id}`}
             key={item.id}
             className="flex items-center space-x-3 bg-[#f9fafb] p-3 rounded-lg hover:bg-gray-100"
           >

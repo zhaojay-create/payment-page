@@ -17,18 +17,20 @@ export default function SearchBar() {
     router.push(`?${query.toString()}`);
   };
 
+  const hanldeSetRange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const range = e.target.value;
+    setRange(range);
+    const query = new URLSearchParams();
+    if (keyword) query.set("keyword", keyword);
+    if (range) query.set("range", range);
+    router.push(`?${query.toString()}`);
+  };
+
   return (
-    <div className="bg-white rounded-lg p-4 shadow flex flex-col sm:flex-row gap-4 items-center">
-      <input
-        type="text"
-        placeholder="搜索商户名"
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-        className="flex-1 border px-3 py-2 rounded-md"
-      />
+    <div className="bg-white fixed top-0 left-0 right-0 flex items-center justify-between px-4 py-2 shadow">
       <select
         value={range}
-        onChange={(e) => setRange(e.target.value)}
+        onChange={hanldeSetRange}
         className="border px-3 py-2 rounded-md"
       >
         <option value="">全部时间</option>
@@ -36,6 +38,14 @@ export default function SearchBar() {
         <option value="week">近一周</option>
         <option value="month">近一个月</option>
       </select>
+      <input
+        type="text"
+        placeholder="搜索商户名"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        className="flex-1 border px-3 py-2 rounded-md"
+      />
+
       <button
         onClick={handleSearch}
         className="bg-blue-500 text-white px-4 py-2 rounded-md"

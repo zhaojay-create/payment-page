@@ -1,3 +1,4 @@
+import FooterNavLink from "@/components/common/FooterNavLink";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="">{children}</body>
+      <body className="min-h-screen bg-[#f8f9fa] p-4 space-y-6">
+        {children}
+        <FooterNavLink />
+      </body>
     </html>
   );
 }

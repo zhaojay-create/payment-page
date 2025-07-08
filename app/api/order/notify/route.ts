@@ -43,10 +43,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 5. 生成新的返利券
-    const cashbackAmount =
-      Number(Number(finalAmount / 10).toFixed(2)) > 0
-        ? Number(Number(finalAmount / 10).toFixed(2))
-        : 0.01;
+    const cashbackAmount = Math.max(Number((finalAmount / 10).toFixed(2)), 1);
     await prisma.coupon.create({
       data: {
         userId: order.userId,

@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { buildUrl, fetcher } from "@/utils";
 import { useEffect } from "react";
 import OrderCard from "./OrderCard";
+import { Order } from "@/prisma/lib/generated/prisma";
 
 const PAGE_SIZE = 6;
 
@@ -17,7 +18,7 @@ export default function OrdersFeed({
 }) {
   const { ref, inView } = useInView({ threshold: 0 });
 
-  const getKey = (pageIndex: number, prev: any) => {
+  const getKey = (pageIndex: number, prev: { orders: Order[] }) => {
     if (prev && prev.orders.length === 0) return null;
     return buildUrl(`/api/order/queryFeeds`, {
       page: String(pageIndex + 1),
@@ -45,7 +46,7 @@ export default function OrdersFeed({
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1  gap-4">
         {[...Array(4)].map((_, i) => (
           <div key={i} className="h-32 bg-gray-200 rounded animate-pulse" />
         ))}
@@ -59,7 +60,7 @@ export default function OrdersFeed({
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1  gap-4">
         {orders.map((order) => (
           <OrderCard key={order.id} order={order} />
         ))}

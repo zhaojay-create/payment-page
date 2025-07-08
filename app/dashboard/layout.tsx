@@ -13,9 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[#f8f9fa] p-4 space-y-6">
-        {children}
-        <FooterNavLink />
+      <body className="min-h-screen">
+        <div className="min-h-screen bg-blue-50">
+          {children}
+          <FooterNavLink />
+        </div>
       </body>
     </html>
   );

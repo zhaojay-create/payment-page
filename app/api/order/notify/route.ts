@@ -57,7 +57,6 @@ export async function POST(req: NextRequest) {
         expiredAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
-    console.log("notify success, 生成了返利券");
     return new Response("success"); // 必须返回 success，否则支付宝会重试
   } catch (e) {
     console.error("notify fail", e);

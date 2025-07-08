@@ -55,28 +55,33 @@ async function RecentCoupons() {
 
   // 5. 如果有优惠券, 就展示优惠券
   return (
-    <div className="bg-white rounded-xl p-4 shadow">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-lg font-semibold">最近获得的返利券</span>
-        <Link href="/profile/coupons" className="text-blue-500 text-sm">
-          查看全部
-        </Link>
-      </div>
-      {showCoupons.map((coupon) => (
-        <div key={coupon.id} className="bg-[#f1f5f9] p-3 rounded-lg mb-3">
-          <div className="flex justify-between">
-            <span className="font-bold text-green-600 text-lg">
-              ￥{Number(coupon.amount).toFixed(2)}
-            </span>
-            <span className="text-sm text-gray-500">
-              来自：{coupon.fromMerchant?.name || "未知商户"}
-            </span>
-          </div>
-          <div className="text-xs text-gray-400">
-            有效期至：{new Date(coupon.expiredAt).toLocaleDateString()}
-          </div>
+    <div className="bg-blue-50 p-4  space-y-3">
+      <div className="shadow bg-white rounded-2xl p-4 space-y-3">
+        <div className="flex justify-between items-center">
+          <h2 className="text-base font-semibold text-gray-800">
+            最近获得的返利券
+          </h2>
+          <Link href="/profile/coupons" className="text-blue-500 text-sm">
+            查看全部
+          </Link>
         </div>
-      ))}
+
+        {showCoupons.map((coupon) => (
+          <div key={coupon.id} className="bg-muted/50 p-3 rounded-xl space-y-1">
+            <div className="flex justify-between items-center">
+              <span className="font-bold text-green-600 text-lg">
+                ￥{Number(coupon.amount).toFixed(2)}
+              </span>
+              <span className="text-sm text-gray-500">
+                来自：{coupon.fromMerchant?.name || "未知商户"}
+              </span>
+            </div>
+            <p className="text-xs text-gray-400">
+              有效期至：{new Date(coupon.expiredAt).toLocaleDateString()}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

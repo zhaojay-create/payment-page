@@ -1,7 +1,6 @@
 import HelloHeader from "@/components/common/HelloHeader";
 import RecentCoupons from "@/components/common/RecentCoupons";
 import RecommendMerchant from "@/components/common/RecommendMerchant";
-import FooterNavLink from "@/components/common/FooterNavLink";
 
 const Page = () => {
   return (
@@ -14,9 +13,6 @@ const Page = () => {
 
       {/* 推荐商户 */}
       <RecommendMerchant />
-
-      {/* 底部导航（选配） */}
-      <FooterNavLink />
     </>
   );
 };
